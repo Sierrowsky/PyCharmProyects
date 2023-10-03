@@ -15,10 +15,10 @@ class Main(QtWidgets.QMainWindow):
         
         Zona de eventos de botones
         """
-        var.ui.BotonSalir.clicked.connect(eventos.Eventos.Saludo)
+
 
 if __name__ == '__main__':
     app = QtWidgets.QApplication([])
     window = Main()
-    window.show()
+    window.showMaximized()
     sys.exit(app.exec())

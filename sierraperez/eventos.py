@@ -1,7 +1,7 @@
 import var
 class Eventos():
-    def Saludo(self):
+    def Salir(self):
         try:
-            var.ui.lblTitulo.setText("Hola, pulsaste el boton")
+            pass
         except Exception as error:
             print(error,"en modulo eventos")

@@ -99,7 +99,7 @@ class Ui_MainWindow(object):
         self.btnCalendar.setGeometry(QtCore.QRect(730, 10, 41, 41))
         self.btnCalendar.setText("")
         icon1 = QtGui.QIcon()
-        icon1.addPixmap(QtGui.QPixmap("../../Downloads/R.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        icon1.addPixmap(QtGui.QPixmap("img/Calendar.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
         self.btnCalendar.setIcon(icon1)
         self.btnCalendar.setIconSize(QtCore.QSize(25, 25))
         self.btnCalendar.setDefault(False)

@@ -322,7 +322,7 @@
          </property>
          <property name="icon">
           <iconset>
-           <normaloff>../../Downloads/R.png</normaloff>../../Downloads/R.png</iconset>
+           <normaloff>img/Calendar.png</normaloff>img/Calendar.png</iconset>
          </property>
          <property name="iconSize">
           <size>

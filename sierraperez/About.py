@@ -60,9 +60,9 @@ class Ui_dlgAbout(object):
         self.label_6.setGeometry(QtCore.QRect(20, 140, 81, 16))
         self.label_6.setObjectName("label_6")
         self.label_7 = QtWidgets.QLabel(parent=self.frame)
-        self.label_7.setGeometry(QtCore.QRect(10, 170, 151, 51))
+        self.label_7.setGeometry(QtCore.QRect(10, 170, 181, 61))
         self.label_7.setText("")
-        self.label_7.setPixmap(QtGui.QPixmap("img/by-nc.png"))
+        self.label_7.setPixmap(QtGui.QPixmap("img/by-nc-nd.png"))
         self.label_7.setScaledContents(True)
         self.label_7.setObjectName("label_7")
 

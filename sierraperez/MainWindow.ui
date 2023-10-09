@@ -50,15 +50,9 @@
      <widget class="QTabWidget" name="TabPrincipal">
       <property name="minimumSize">
        <size>
-        <width>980</width>
-        <height>700</height>
+        <width>300</width>
+        <height>20</height>
        </size>
-      </property>
-      <property name="font">
-       <font>
-        <weight>75</weight>
-        <bold>true</bold>
-       </font>
       </property>
       <property name="currentIndex">
        <number>0</number>
@@ -70,11 +64,17 @@
        <widget class="QFrame" name="frame">
         <property name="geometry">
          <rect>
-          <x>110</x>
+          <x>80</x>
           <y>30</y>
-          <width>791</width>
-          <height>90</height>
+          <width>800</width>
+          <height>191</height>
          </rect>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>800</width>
+          <height>90</height>
+         </size>
         </property>
         <property name="frameShape">
          <enum>QFrame::Box</enum>
@@ -110,7 +110,7 @@
           <set>Qt::AlignCenter</set>
          </property>
         </widget>
-        <widget class="QLineEdit" name="lineEdit_2">
+        <widget class="QLineEdit" name="txNombre">
          <property name="geometry">
           <rect>
            <x>460</x>
@@ -137,13 +137,13 @@
           <rect>
            <x>20</x>
            <y>60</y>
-           <width>60</width>
+           <width>50</width>
            <height>20</height>
           </rect>
          </property>
          <property name="minimumSize">
           <size>
-           <width>60</width>
+           <width>50</width>
            <height>20</height>
           </size>
          </property>
@@ -175,9 +175,15 @@
           <rect>
            <x>400</x>
            <y>60</y>
-           <width>71</width>
-           <height>16</height>
+           <width>50</width>
+           <height>20</height>
           </rect>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>50</width>
+           <height>20</height>
+          </size>
          </property>
          <property name="text">
           <string>Nombre</string>
@@ -289,7 +295,7 @@
           <set>Qt::AlignCenter</set>
          </property>
         </widget>
-        <widget class="QLineEdit" name="lineEdit">
+        <widget class="QLineEdit" name="txtFecha">
          <property name="geometry">
           <rect>
            <x>580</x>
@@ -376,8 +382,202 @@
           <set>Qt::AlignCenter</set>
          </property>
         </widget>
+        <widget class="QLabel" name="lblDir">
+         <property name="geometry">
+          <rect>
+           <x>20</x>
+           <y>100</y>
+           <width>50</width>
+           <height>20</height>
+          </rect>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>50</width>
+           <height>20</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>Direccion</string>
+         </property>
+        </widget>
+        <widget class="QLineEdit" name="txtDir">
+         <property name="geometry">
+          <rect>
+           <x>80</x>
+           <y>100</y>
+           <width>300</width>
+           <height>20</height>
+          </rect>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>300</width>
+           <height>20</height>
+          </size>
+         </property>
+        </widget>
+        <widget class="QLabel" name="lblTlf">
+         <property name="geometry">
+          <rect>
+           <x>20</x>
+           <y>140</y>
+           <width>50</width>
+           <height>20</height>
+          </rect>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>50</width>
+           <height>20</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>Telefono</string>
+         </property>
+        </widget>
+        <widget class="QLineEdit" name="txtTlf">
+         <property name="geometry">
+          <rect>
+           <x>80</x>
+           <y>140</y>
+           <width>300</width>
+           <height>20</height>
+          </rect>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>300</width>
+           <height>20</height>
+          </size>
+         </property>
+        </widget>
+        <widget class="QLabel" name="lblLocalidad">
+         <property name="geometry">
+          <rect>
+           <x>590</x>
+           <y>100</y>
+           <width>50</width>
+           <height>20</height>
+          </rect>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>50</width>
+           <height>20</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>Localidad</string>
+         </property>
+        </widget>
+        <widget class="QComboBox" name="cmbLocalidad">
+         <property name="geometry">
+          <rect>
+           <x>640</x>
+           <y>100</y>
+           <width>120</width>
+           <height>22</height>
+          </rect>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>120</width>
+           <height>20</height>
+          </size>
+         </property>
+        </widget>
+        <widget class="QComboBox" name="cmbProvincia">
+         <property name="geometry">
+          <rect>
+           <x>460</x>
+           <y>100</y>
+           <width>120</width>
+           <height>22</height>
+          </rect>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>120</width>
+           <height>20</height>
+          </size>
+         </property>
+        </widget>
+        <widget class="QLabel" name="lblProvincia">
+         <property name="geometry">
+          <rect>
+           <x>400</x>
+           <y>100</y>
+           <width>50</width>
+           <height>20</height>
+          </rect>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>50</width>
+           <height>20</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>Provincia</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="lblSalario">
+         <property name="geometry">
+          <rect>
+           <x>400</x>
+           <y>140</y>
+           <width>50</width>
+           <height>20</height>
+          </rect>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>50</width>
+           <height>20</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>Salario</string>
+         </property>
+        </widget>
+        <widget class="QLineEdit" name="txtSalario">
+         <property name="geometry">
+          <rect>
+           <x>460</x>
+           <y>140</y>
+           <width>200</width>
+           <height>20</height>
+          </rect>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>200</width>
+           <height>20</height>
+          </size>
+         </property>
+        </widget>
+        <widget class="QLabel" name="lblEuro">
+         <property name="geometry">
+          <rect>
+           <x>670</x>
+           <y>140</y>
+           <width>50</width>
+           <height>20</height>
+          </rect>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>50</width>
+           <height>20</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>€</string>
+         </property>
+        </widget>
         <zorder>lblValidarDni</zorder>
-        <zorder>lineEdit_2</zorder>
+        <zorder>txNombre</zorder>
         <zorder>lblApel</zorder>
         <zorder>lblFechaAlta</zorder>
         <zorder>lblNombre</zorder>
@@ -385,9 +585,20 @@
         <zorder>lblcod</zorder>
         <zorder>txtApel</zorder>
         <zorder>lblcoddb</zorder>
-        <zorder>lineEdit</zorder>
+        <zorder>txtFecha</zorder>
         <zorder>btnCalendar</zorder>
         <zorder>txtDni</zorder>
+        <zorder>lblDir</zorder>
+        <zorder>txtDir</zorder>
+        <zorder>lblTlf</zorder>
+        <zorder>txtTlf</zorder>
+        <zorder>lblLocalidad</zorder>
+        <zorder>cmbLocalidad</zorder>
+        <zorder>cmbProvincia</zorder>
+        <zorder>lblProvincia</zorder>
+        <zorder>lblSalario</zorder>
+        <zorder>txtSalario</zorder>
+        <zorder>lblEuro</zorder>
        </widget>
       </widget>
       <widget class="QWidget" name="tab_2">

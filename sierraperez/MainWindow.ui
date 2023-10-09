@@ -72,8 +72,8 @@
          <rect>
           <x>110</x>
           <y>30</y>
-          <width>771</width>
-          <height>91</height>
+          <width>791</width>
+          <height>90</height>
          </rect>
         </property>
         <property name="frameShape">
@@ -102,6 +102,9 @@
            <width>200</width>
            <height>20</height>
           </size>
+         </property>
+         <property name="text">
+          <string/>
          </property>
          <property name="alignment">
           <set>Qt::AlignCenter</set>
@@ -337,6 +340,54 @@
           <bool>true</bool>
          </property>
         </widget>
+        <widget class="QLabel" name="lblValidarDni">
+         <property name="geometry">
+          <rect>
+           <x>360</x>
+           <y>10</y>
+           <width>60</width>
+           <height>30</height>
+          </rect>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>60</width>
+           <height>30</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>60</width>
+           <height>30</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <family>MV Boli</family>
+           <pointsize>14</pointsize>
+           <weight>50</weight>
+           <bold>false</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+        <zorder>lblValidarDni</zorder>
+        <zorder>lineEdit_2</zorder>
+        <zorder>lblApel</zorder>
+        <zorder>lblFechaAlta</zorder>
+        <zorder>lblNombre</zorder>
+        <zorder>lblDNI</zorder>
+        <zorder>lblcod</zorder>
+        <zorder>txtApel</zorder>
+        <zorder>lblcoddb</zorder>
+        <zorder>lineEdit</zorder>
+        <zorder>btnCalendar</zorder>
+        <zorder>txtDni</zorder>
        </widget>
       </widget>
       <widget class="QWidget" name="tab_2">

@@ -1,4 +1,6 @@
 import sys, eventos, var
+
+import drivers
 from Calendar import *
 from MainWindow import *
 from Salir import *
@@ -39,6 +41,7 @@ class Main(QtWidgets.QMainWindow):
         var.calendar = Calendar()
         var.salir = Salir()
         var.about = About()
+        var.driver = drivers.Drivers()
         """
         Zona de eventos de botones
         """
@@ -49,6 +52,10 @@ class Main(QtWidgets.QMainWindow):
         """
         var.ui.actionSalir.triggered.connect(eventos.Eventos.Salir)
         var.ui.actionAcerca_de.triggered.connect(eventos.Eventos.acercade)
+        """
+        Zona de eventos de las cajas de texto
+        """
+        var.ui.txtDni.editingFinished.connect(drivers.Drivers.ValidarDni)
 
 
 if __name__ == '__main__':

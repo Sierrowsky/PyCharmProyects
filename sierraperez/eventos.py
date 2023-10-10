@@ -24,20 +24,24 @@ class Eventos():
         except Exception as error:
             print("Error abrir ventana acerca de ", error)
 
+    @staticmethod
     def btnSalir(self):
         try:
             sys.exit()
         except Exception as error:
             print("Error btnSalir, ", error)
 
+    @staticmethod
     def btnCancelar(self):
         try:
             var.salir.hide()
         except Exception as error:
             print("Error btnCancelar, ", error)
 
+    @staticmethod
     def btnCerrarAbout(self):
         try:
             var.about.hide()
         except Exception as error:
             print("Error en btnCerrarAbout, ", error)
+

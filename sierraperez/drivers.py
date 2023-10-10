@@ -2,7 +2,29 @@ import var
 
 
 class Drivers():
-    def ValidarDni(self = None ):
+    @staticmethod
+    def LimpiarPanel(self):
+        try:
+            listawidgets = [var.ui.txtNombre, var.ui.txtApel, var.ui.txtDir, var.ui.txtSalario,
+                            var.ui.txtTlf, var.ui.txtDni, var.ui.txtFecha, var.ui.txtNombre,
+                            var.ui.txtApel, var.ui.txtDir, var.ui.txtSalario, var.ui.txtTlf,
+                            var.ui.lblValidarDni]
+            for i in listawidgets:
+                i.setText(None)
+        except Exception as error:
+            print("Error en LimpiarPanel", error)
+
+    @staticmethod
+    def CargaFecha(qDate):
+        try:
+            data = ('{:02d}/{:02d}/{:04d}'.format(qDate.day(), qDate.month(), qDate.year()))
+            var.ui.txtFecha.setText(str(data))
+            var.calendar.hide()
+        except Exception as error:
+            print("Error cargaFecha ", error)
+
+    @staticmethod
+    def ValidarDni(self=None):
         try:
             dni = var.ui.txtDni.text()
             dni = dni.upper()
@@ -23,10 +45,14 @@ class Drivers():
                 else:
                     var.ui.lblValidarDni.setStyleSheet('color:red;')
                     var.ui.lblValidarDni.setText('X')
+                    var.ui.txtDni.setText(None)
+                    var.ui.txtDni.setFocus()
                     print("no perfecto")
             else:
                 var.ui.lblValidarDni.setStyleSheet('color:red;')
                 var.ui.lblValidarDni.setText('X')
+                var.ui.txtDni.setText(None)
+                var.ui.txtDni.setFocus()
                 print("no perfecto")
         except Exception as error:
             print("error en validar dni ", error)

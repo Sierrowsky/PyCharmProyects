@@ -1,8 +1,7 @@
+import datetime
+
 from MainWindow import *
 from windowAux import *
-
-
-
 
 
 class Main(QtWidgets.QMainWindow):
@@ -15,6 +14,8 @@ class Main(QtWidgets.QMainWindow):
         var.salir = Salir()
         var.about = About()
         var.driver = drivers.Drivers()
+
+
         """
         Zona de eventos de botones
         """
@@ -34,7 +35,22 @@ class Main(QtWidgets.QMainWindow):
         """
         var.ui.barSalir.triggered.connect(eventos.Eventos.Salir)
         var.ui.barLimpiarPanel.triggered.connect(drivers.Drivers.LimpiarPanel)
+        """
+        StatusBar
+        """
+        fecha = str(datetime.now())
+        var.ui.statusbar.showMessage(fecha)
+        """
+        Ejecucion de diferentes funciones al lanzar la APP
+        """
+    def closeEvent(self, event):
+        mbox = QtWidgets.QMessageBox.information(self, " Salir ", "¿Estas seguro que quieres salir?",
+                                                 QtWidgets.QMessageBox.StandardButton.Yes | QtWidgets.QMessageBox.StandardButton.No)
 
+        if mbox == QtWidgets.QMessageBox.StandardButton.Yes:
+            app.quit()
+        else:
+            event.ignore()
 
 if __name__ == '__main__':
     app = QtWidgets.QApplication([])

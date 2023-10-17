@@ -46,6 +46,7 @@ class Ui_dlgAbout(object):
         font.setBold(True)
         font.setWeight(75)
         self.label_3.setFont(font)
+        self.label_3.setText("")
         self.label_3.setObjectName("label_3")
         self.label_4 = QtWidgets.QLabel(parent=self.frame)
         self.label_4.setGeometry(QtCore.QRect(20, 120, 151, 16))
@@ -62,7 +63,7 @@ class Ui_dlgAbout(object):
         self.label_7 = QtWidgets.QLabel(parent=self.frame)
         self.label_7.setGeometry(QtCore.QRect(10, 170, 181, 61))
         self.label_7.setText("")
-        self.label_7.setPixmap(QtGui.QPixmap("img/by-nc-nd.png"))
+        self.label_7.setPixmap(QtGui.QPixmap("../../.designer/backup/img/by-nc-nd.png"))
         self.label_7.setScaledContents(True)
         self.label_7.setObjectName("label_7")
 
@@ -75,6 +76,5 @@ class Ui_dlgAbout(object):
         self.btnCerrraAbout.setText(_translate("dlgAbout", "Cerrar"))
         self.label.setText(_translate("dlgAbout", "Car Teis ®"))
         self.label_2.setText(_translate("dlgAbout", "Alquiler de Coches"))
-        self.label_3.setText(_translate("dlgAbout", "Versión 0.0.3"))
         self.label_4.setText(_translate("dlgAbout", "06/10/2023 Pablo Sierra Pérez"))
         self.label_6.setText(_translate("dlgAbout", "IES de Teis"))

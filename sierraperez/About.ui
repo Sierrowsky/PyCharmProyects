@@ -110,7 +110,7 @@
      </font>
     </property>
     <property name="text">
-     <string>Versión 0.0.3</string>
+     <string/>
     </property>
    </widget>
    <widget class="QLabel" name="label_4">
@@ -171,7 +171,7 @@
      <string/>
     </property>
     <property name="pixmap">
-     <pixmap>img/by-nc-nd.png</pixmap>
+     <pixmap>../../.designer/backup/img/by-nc-nd.png</pixmap>
     </property>
     <property name="scaledContents">
      <bool>true</bool>

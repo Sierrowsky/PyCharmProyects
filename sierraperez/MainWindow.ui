@@ -906,6 +906,9 @@
           <height>361</height>
          </rect>
         </property>
+        <attribute name="verticalHeaderVisible">
+         <bool>false</bool>
+        </attribute>
         <column>
          <property name="text">
           <string>Código</string>

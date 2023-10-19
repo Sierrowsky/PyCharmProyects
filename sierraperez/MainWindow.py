@@ -275,6 +275,7 @@ class Ui_MainWindow(object):
         self.tabDrivers.setHorizontalHeaderItem(4, item)
         item = QtWidgets.QTableWidgetItem()
         self.tabDrivers.setHorizontalHeaderItem(5, item)
+        self.tabDrivers.verticalHeader().setVisible(False)
         self.TabPrincipal.addTab(self.panelDrivers, "")
         self.tab_2 = QtWidgets.QWidget()
         self.tab_2.setObjectName("tab_2")

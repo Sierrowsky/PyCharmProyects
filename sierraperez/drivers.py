@@ -1,6 +1,7 @@
 import var
 from PyQt6 import QtWidgets
 
+
 class Drivers():
     @staticmethod
     def LimpiarPanel(self):
@@ -11,7 +12,7 @@ class Drivers():
                             var.ui.lblValidarDni]
             for i in listawidgets:
                 i.setText(None)
-            chkLicencia = [var.ui.chkA, var.ui.chkB,var.ui.chkC,var.ui.chkD]
+            chkLicencia = [var.ui.chkA, var.ui.chkB, var.ui.chkC, var.ui.chkD]
             for i in chkLicencia:
                 i.setChecked(False)
 
@@ -62,21 +63,26 @@ class Drivers():
                 print("no perfecto")
         except Exception as error:
             print("error en validar dni ", error)
+
     def altadriver(self):
         try:
-            driver = [var.ui.txtApel,var.ui.txtNombre,var.ui.txtTlf]
-            newdrivers=[]
+            driver = [var.ui.txtApel, var.ui.txtNombre, var.ui.txtTlf]
+            newdrivers = []
             newdrivers.append(1)
             for i in driver:
                 newdrivers.append(i.text().title())
-            licencias=[]
+            licencias = []
             chkLicencia = [var.ui.chkA, var.ui.chkB, var.ui.chkC, var.ui.chkD]
             for i in chkLicencia:
                 licencias.append(i.text())
             newdrivers.append(' - '.join(licencias))
             index = 0
-            var.ui.tabDrivers.setRowCount(index+1)#Crea una fila
-            var.ui.tabDrivers.setItem(index,0,QtWidgets.QTableWidgetItem(str.newdrivers(1)))
+            var.ui.tabDrivers.setRowCount(index + 1)  # Crea una fila
+            var.ui.tabDrivers.setItem(index, 0, QtWidgets.QTableWidgetItem(str(newdrivers[0])))
+            var.ui.tabDrivers.setItem(index, 1, QtWidgets.QTableWidgetItem(str(newdrivers[1])))
+            var.ui.tabDrivers.setItem(index, 2, QtWidgets.QTableWidgetItem(str(newdrivers[2])))
+            var.ui.tabDrivers.setItem(index, 3, QtWidgets.QTableWidgetItem(str(newdrivers[3])))
+            var.ui.tabDrivers.setItem(index, 4, QtWidgets.QTableWidgetItem(str(newdrivers[4])))
             print(newdrivers)
         except Exception as error:
-            print("Error en alta Driver",error)
+            print("Error en alta Driver", error)

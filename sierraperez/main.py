@@ -25,6 +25,7 @@ class Main(QtWidgets.QMainWindow):
         """
         var.ui.actionSalir.triggered.connect(eventos.Eventos.Salir)
         var.ui.actionAcerca_de.triggered.connect(eventos.Eventos.acercade)
+
         """
         Zona de eventos de las cajas de texto
         """
@@ -34,6 +35,9 @@ class Main(QtWidgets.QMainWindow):
         """
         var.ui.barSalir.triggered.connect(eventos.Eventos.Salir)
         var.ui.barLimpiarPanel.triggered.connect(drivers.Drivers.LimpiarPanel)
+        """
+        Eventos en tablas
+        """
         """
         Ejecucion de diferentes funciones al lanzar la APP
         """

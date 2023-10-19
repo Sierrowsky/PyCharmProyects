@@ -1,5 +1,5 @@
 import var
-
+from PyQt6 import QtWidgets
 
 class Drivers():
     @staticmethod
@@ -62,3 +62,21 @@ class Drivers():
                 print("no perfecto")
         except Exception as error:
             print("error en validar dni ", error)
+    def altadriver(self):
+        try:
+            driver = [var.ui.txtApel,var.ui.txtNombre,var.ui.txtTlf]
+            newdrivers=[]
+            newdrivers.append(1)
+            for i in driver:
+                newdrivers.append(i.text().title())
+            licencias=[]
+            chkLicencia = [var.ui.chkA, var.ui.chkB, var.ui.chkC, var.ui.chkD]
+            for i in chkLicencia:
+                licencias.append(i.text())
+            newdrivers.append(' - '.join(licencias))
+            index = 0
+            var.ui.tabDrivers.setRowCount(index+1)#Crea una fila
+            var.ui.tabDrivers.setItem(index,0,QtWidgets.QTableWidgetItem(str.newdrivers(1)))
+            print(newdrivers)
+        except Exception as error:
+            print("Error en alta Driver",error)

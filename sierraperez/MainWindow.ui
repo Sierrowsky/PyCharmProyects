@@ -698,7 +698,7 @@
           <string>D</string>
          </property>
         </widget>
-        <widget class="QLabel" name="label">
+        <widget class="QLabel" name="lblHistorico">
          <property name="geometry">
           <rect>
            <x>390</x>
@@ -714,7 +714,7 @@
           </size>
          </property>
          <property name="text">
-          <string>Estado</string>
+          <string>Historico</string>
          </property>
         </widget>
         <widget class="QRadioButton" name="rbtAlta">
@@ -889,7 +889,7 @@
         <zorder>chkB</zorder>
         <zorder>chkC</zorder>
         <zorder>chkD</zorder>
-        <zorder>label</zorder>
+        <zorder>lblHistorico</zorder>
         <zorder>rbtAlta</zorder>
         <zorder>rbtBaja</zorder>
         <zorder>rbtTodos</zorder>

@@ -46,7 +46,7 @@
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout">
-    <item row="0" column="1">
+    <item row="0" column="0">
      <widget class="QTabWidget" name="TabPrincipal">
       <property name="enabled">
        <bool>true</bool>
@@ -60,29 +60,29 @@
       <property name="currentIndex">
        <number>0</number>
       </property>
-      <widget class="QWidget" name="TabDrivers">
+      <widget class="QWidget" name="panelDrivers">
        <attribute name="title">
         <string>Conductores</string>
        </attribute>
        <widget class="QFrame" name="frame">
         <property name="geometry">
          <rect>
-          <x>80</x>
-          <y>30</y>
+          <x>70</x>
+          <y>40</y>
           <width>921</width>
-          <height>200</height>
+          <height>250</height>
          </rect>
         </property>
         <property name="minimumSize">
          <size>
           <width>800</width>
-          <height>120</height>
+          <height>200</height>
          </size>
         </property>
         <property name="maximumSize">
          <size>
           <width>1100</width>
-          <height>200</height>
+          <height>250</height>
          </size>
         </property>
         <property name="frameShape">
@@ -735,6 +735,9 @@
          <property name="text">
           <string>Alta</string>
          </property>
+         <attribute name="buttonGroup">
+          <string notr="true">buttonGroup</string>
+         </attribute>
         </widget>
         <widget class="QRadioButton" name="rbtBaja">
          <property name="geometry">
@@ -754,6 +757,9 @@
          <property name="text">
           <string>Baja</string>
          </property>
+         <attribute name="buttonGroup">
+          <string notr="true">buttonGroup</string>
+         </attribute>
         </widget>
         <widget class="QRadioButton" name="rbtTodos">
          <property name="geometry">
@@ -772,6 +778,87 @@
          </property>
          <property name="text">
           <string>Todos</string>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
+         <attribute name="buttonGroup">
+          <string notr="true">buttonGroup</string>
+         </attribute>
+        </widget>
+        <widget class="QPushButton" name="btnAltaDriver">
+         <property name="geometry">
+          <rect>
+           <x>300</x>
+           <y>220</y>
+           <width>75</width>
+           <height>20</height>
+          </rect>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>75</width>
+           <height>20</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>75</width>
+           <height>20</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>Alta Driver</string>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="btnModifDriver">
+         <property name="geometry">
+          <rect>
+           <x>400</x>
+           <y>220</y>
+           <width>90</width>
+           <height>20</height>
+          </rect>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>90</width>
+           <height>20</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>90</width>
+           <height>20</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>Modificar Driver</string>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="btnBajaDriver">
+         <property name="geometry">
+          <rect>
+           <x>520</x>
+           <y>220</y>
+           <width>75</width>
+           <height>20</height>
+          </rect>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>75</width>
+           <height>20</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>75</width>
+           <height>20</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>Baja Driver</string>
          </property>
         </widget>
         <zorder>lblValidarDni</zorder>
@@ -806,6 +893,49 @@
         <zorder>rbtAlta</zorder>
         <zorder>rbtBaja</zorder>
         <zorder>rbtTodos</zorder>
+        <zorder>btnAltaDriver</zorder>
+        <zorder>btnModifDriver</zorder>
+        <zorder>btnBajaDriver</zorder>
+       </widget>
+       <widget class="QTableWidget" name="tabDrivers">
+        <property name="geometry">
+         <rect>
+          <x>70</x>
+          <y>300</y>
+          <width>921</width>
+          <height>361</height>
+         </rect>
+        </property>
+        <column>
+         <property name="text">
+          <string>Código</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Telefono</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Apellidos</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Nombre</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Tipo de Carnet</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Fecha Baja</string>
+         </property>
+        </column>
        </widget>
       </widget>
       <widget class="QWidget" name="tab_2">
@@ -921,4 +1051,7 @@
  </tabstops>
  <resources/>
  <connections/>
+ <buttongroups>
+  <buttongroup name="buttonGroup"/>
+ </buttongroups>
 </ui>

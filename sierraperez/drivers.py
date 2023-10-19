@@ -11,6 +11,12 @@ class Drivers():
                             var.ui.lblValidarDni]
             for i in listawidgets:
                 i.setText(None)
+            chkLicencia = [var.ui.chkA, var.ui.chkB,var.ui.chkC,var.ui.chkD]
+            for i in chkLicencia:
+                i.setChecked(False)
+
+            var.ui.cmbProv.setCurrentText(' ')
+            var.ui.cmbMun.setCurrentText(' ')
         except Exception as error:
             print("Error en LimpiarPanel", error)
 

@@ -1,4 +1,4 @@
-# Form implementation generated from reading ui file 'Salir.ui'
+# Form implementation generated from reading ui file '.\templates\Salir.ui'
 #
 # Created by: PyQt6 UI code generator 6.5.2
 #

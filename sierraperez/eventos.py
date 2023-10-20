@@ -1,9 +1,9 @@
 import sys
-import var
 from datetime import datetime
-from PyQt6 import QtWidgets,QtCore
-from Salir import *
 
+import var
+from Salir import *
+from main import locale
 
 class Eventos():
     def Salir(self):
@@ -46,6 +46,7 @@ class Eventos():
             var.about.hide()
         except Exception as error:
             print("Error en btnCerrarAbout, ", error)
+
     def cargarstatusvar(self):
         """
         Eventos StatusBar
@@ -60,16 +61,18 @@ class Eventos():
             self.labelstatusversion.setAlignment(QtCore.Qt.AlignmentFlag.AlignRight)
             var.ui.statusbar.addPermanentWidget(self.labelstatusversion, 0)
         except Exception as error:
-            print("Error en cargarstatusbar " , error)
+            print("Error en cargarstatusbar ", error)
+
     def cargapropia(self):
         try:
-            prov = ['A Coruña','Lugo','Ferrol','Vigo','Santiago de Compostela','Ourense','Pontevedra']
+            prov = ['A Coruña', 'Lugo', 'Ferrol', 'Vigo', 'Santiago de Compostela', 'Ourense', 'Pontevedra']
             var.ui.cmbProv.clear()
             var.ui.cmbProv.addItem(' ')
-            for i,m in enumerate(prov):
+            for i, m in enumerate(prov):
                 var.ui.cmbProv.addItem(str(m))
         except Exception as error:
-            print( "Error en cargapropia " ,error)
+            print("Error en cargapropia ", error)
+
     def selEstado(self):
         try:
             if var.ui.rbtTodos.isChecked():
@@ -79,4 +82,22 @@ class Eventos():
             if var.ui.rbtBaja.isChecked():
                 print("pulsaste baha")
         except Exception as error:
-            print("Error en selEstado",error)
+            print("Error en selEstado", error)
+
+    def resizetabdrivers(self):
+        try:
+            header = var.ui.tabDrivers.horizontalHeader()
+            for i in range(5):
+                if i == 0 or i == 3 or i == 4:
+                    header.setSectionResizeMode(i, QtWidgets.QHeaderView.ResizeMode.ResizeToContents)
+                elif i == 1 or i == 2:
+                    header.setSectionResizeMode(i, QtWidgets.QHeaderView.ResizeMode.Stretch)
+        except Exception as error:
+            print("Error resizetabdrivers ", error)
+    def CajaText(self=None):
+        try:
+            var.ui.txtApel.setText(var.ui.txtApel.text().title())
+            var.ui.txtNombre.setText(var.ui.txtNombre.text().title())
+            var.ui.txtSalario.setText(str(locale.currency(float(var.ui.txtSalario.text()))))
+        except Exception as error:
+            print("Error en LetCap ", error)

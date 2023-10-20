@@ -1,7 +1,13 @@
 import datetime
+
+import drivers
 import var
 from MainWindow import *
 from windowAux import *
+import locale
+
+locale.setlocale(locale.LC_TIME, 'es_ES.UTF-8')
+locale.setlocale(locale.LC_MONETARY, 'es_ES.UTF-8')
 
 
 class Main(QtWidgets.QMainWindow):
@@ -19,7 +25,7 @@ class Main(QtWidgets.QMainWindow):
         Zona de eventos de botones
         """
         var.ui.btnCalendar.clicked.connect(eventos.Eventos.abrirCalendar)
-
+        var.ui.btnAltaDriver.clicked.connect(drivers.Drivers.altadriver)
         """
         Zona de eventos del MenuBar
         """
@@ -30,6 +36,9 @@ class Main(QtWidgets.QMainWindow):
         Zona de eventos de las cajas de texto
         """
         var.ui.txtDni.editingFinished.connect(drivers.Drivers.ValidarDni)
+        var.ui.txtNombre.editingFinished.connect(eventos.Eventos.CajaText)
+        var.ui.txtApel.editingFinished.connect(eventos.Eventos.CajaText)
+        var.ui.txtSalario.editingFinished.connect(eventos.Eventos.CajaText)
         """
         Eventos del ToolBar
         """
@@ -38,6 +47,7 @@ class Main(QtWidgets.QMainWindow):
         """
         Eventos en tablas
         """
+        eventos.Eventos.resizetabdrivers(self)
         """
         Ejecucion de diferentes funciones al lanzar la APP
         """
@@ -46,6 +56,7 @@ class Main(QtWidgets.QMainWindow):
         rbtDriver = [var.ui.rbtTodos, var.ui.rbtAlta, var.ui.rbtBaja]
         for i in rbtDriver:
             i.toggled.connect(eventos.Eventos.selEstado)
+
     def closeEvent(self, event):
         mbox = QtWidgets.QMessageBox.information(self, " Salir ", "¿Estas seguro que quieres salir?",
                                                  QtWidgets.QMessageBox.StandardButton.Yes | QtWidgets.QMessageBox.StandardButton.No)

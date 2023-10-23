@@ -1,4 +1,4 @@
-# Form implementation generated from reading ui file 'MainWindow.ui'
+# Form implementation generated from reading ui file '.\templates\MainWindow.ui'
 #
 # Created by: PyQt6 UI code generator 6.5.2
 #
@@ -21,7 +21,7 @@ class Ui_MainWindow(object):
         MainWindow.setMinimumSize(QtCore.QSize(1024, 768))
         MainWindow.setMaximumSize(QtCore.QSize(16777215, 16777215))
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("../../.designer/backup/img/Logo1.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        icon.addPixmap(QtGui.QPixmap(".\\templates\\../../.designer/backup/img/Logo1.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
         MainWindow.setWindowIcon(icon)
         MainWindow.setLayoutDirection(QtCore.Qt.LayoutDirection.LeftToRight)
         MainWindow.setAnimated(True)
@@ -103,7 +103,7 @@ class Ui_MainWindow(object):
         self.btnCalendar.setMinimumSize(QtCore.QSize(50, 20))
         self.btnCalendar.setText("")
         icon1 = QtGui.QIcon()
-        icon1.addPixmap(QtGui.QPixmap("../../.designer/backup/img/Calendar.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        icon1.addPixmap(QtGui.QPixmap(".\\templates\\../../.designer/backup/img/Calendar.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
         self.btnCalendar.setIcon(icon1)
         self.btnCalendar.setIconSize(QtCore.QSize(25, 25))
         self.btnCalendar.setDefault(False)
@@ -298,12 +298,12 @@ class Ui_MainWindow(object):
         MainWindow.addToolBar(QtCore.Qt.ToolBarArea.TopToolBarArea, self.toolBar)
         self.actionSalir = QtGui.QAction(parent=MainWindow)
         icon2 = QtGui.QIcon()
-        icon2.addPixmap(QtGui.QPixmap("../../.designer/backup/img/exit_icon-icons.com_70975.ico"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        icon2.addPixmap(QtGui.QPixmap(".\\templates\\../../.designer/backup/img/exit_icon-icons.com_70975.ico"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
         self.actionSalir.setIcon(icon2)
         self.actionSalir.setObjectName("actionSalir")
         self.actionAcerca_de = QtGui.QAction(parent=MainWindow)
         icon3 = QtGui.QIcon()
-        icon3.addPixmap(QtGui.QPixmap("../../.designer/backup/img/sign-question-icon_34359.ico"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        icon3.addPixmap(QtGui.QPixmap(".\\templates\\../../.designer/backup/img/sign-question-icon_34359.ico"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
         self.actionAcerca_de.setIcon(icon3)
         self.actionAcerca_de.setObjectName("actionAcerca_de")
         self.barSalir = QtGui.QAction(parent=MainWindow)
@@ -311,7 +311,7 @@ class Ui_MainWindow(object):
         self.barSalir.setObjectName("barSalir")
         self.barLimpiarPanel = QtGui.QAction(parent=MainWindow)
         icon4 = QtGui.QIcon()
-        icon4.addPixmap(QtGui.QPixmap("../../.designer/backup/img/reload_icon-icons.com_64795.ico"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        icon4.addPixmap(QtGui.QPixmap(".\\templates\\../../.designer/backup/img/reload_icon-icons.com_64795.ico"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
         self.barLimpiarPanel.setIcon(icon4)
         self.barLimpiarPanel.setObjectName("barLimpiarPanel")
         self.menuArchivo.addAction(self.actionSalir)

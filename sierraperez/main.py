@@ -1,5 +1,5 @@
 import datetime
-
+import conexion
 import drivers
 import var
 from MainWindow import *
@@ -20,7 +20,8 @@ class Main(QtWidgets.QMainWindow):
         var.salir = Salir()
         var.about = About()
         var.driver = drivers.Drivers()
-
+        conexion.Conexion.conexion()
+        conexion.Conexion.cargaprov()
         """
         Zona de eventos de botones
         """
@@ -70,5 +71,5 @@ class Main(QtWidgets.QMainWindow):
 if __name__ == '__main__':
     app = QtWidgets.QApplication([])
     window = Main()
-    window.showMaximized()
+    window.show()
     sys.exit(app.exec())

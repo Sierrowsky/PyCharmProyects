@@ -31,6 +31,39 @@ class Drivers():
             print("Error cargaFecha ", error)
 
     @staticmethod
+    def ValSalario(self=None):
+        try:
+            Salario = var.ui.txtSalario.text()
+
+        except Exception as error:
+            print("Error en ValSalario", error)
+
+    @staticmethod
+    def valTelefono():
+        try:
+            telefono = var.ui.txtTlf.text()
+            numeros = '1234567890'
+            if len(telefono) == 9:
+                if len(telefono) == len([n for n in telefono if n in numeros]):
+                    var.ui.lblValidarTlf.setStyleSheet('color:green;')
+                    var.ui.lblValidarTlf.setText('V')
+                    print("perfecto")
+                else:
+                    var.ui.lblValidarTlf.setStyleSheet('color:red;')
+                    var.ui.lblValidarTlf.setText('X')
+                    var.ui.txtTlf.setText(None)
+                    var.ui.txtTlf.setFocus()
+                    print("no perfecto")
+            else:
+                var.ui.lblValidarTlf.setStyleSheet('color:red;')
+                var.ui.lblValidarTlf.setText('X')
+                var.ui.txtTlf.setText(None)
+                var.ui.txtTlf.setFocus()
+                print("no perfecto")
+        except Exception as error:
+            print("Error en ValTelefono", error)
+
+    @staticmethod
     def ValidarDni(self=None):
         try:
             dni = var.ui.txtDni.text()

@@ -1,6 +1,7 @@
 import datetime
 import conexion
 import drivers
+import eventos
 import var
 from MainWindow import *
 from windowAux import *
@@ -40,6 +41,7 @@ class Main(QtWidgets.QMainWindow):
         var.ui.txtNombre.editingFinished.connect(eventos.Eventos.CajaText)
         var.ui.txtApel.editingFinished.connect(eventos.Eventos.CajaText)
         var.ui.txtSalario.editingFinished.connect(eventos.Eventos.CajaText)
+        var.ui.txtTlf.editingFinished.connect(drivers.Drivers.valTelefono)
         """
         Eventos del ToolBar
         """

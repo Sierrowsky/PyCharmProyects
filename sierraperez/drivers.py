@@ -1,3 +1,5 @@
+import locale
+
 import var
 from PyQt6 import QtWidgets, QtCore
 
@@ -31,35 +33,49 @@ class Drivers():
             print("Error cargaFecha ", error)
 
     @staticmethod
-    def ValSalario(self=None):
+    def valSalario(self=None):
         try:
-            Salario = var.ui.txtSalario.text()
-
+            salario = var.ui.txtSalario.text()
+            valores = "1234567890., €"
+            for n in salario:
+                if n in valores:
+                    pass
+                else:
+                    msg = QtWidgets.QMessageBox()
+                    msg.setWindowTitle('Aviso')
+                    msg.setIcon(QtWidgets.QMessageBox.Icon.Warning)
+                    msg.setText('Valor de Salario Incorrecto (00000000.00)')
+                    msg.setStandardButtons(QtWidgets.QMessageBox.StandardButton.Ok)
+                    msg.button(QtWidgets.QMessageBox.StandardButton.Ok).setText('Aceptar')
+                    msg.setDefaultButton(QtWidgets.QMessageBox.StandardButton.Ok)
+                    msg.exec()
+                    var.ui.txtSalario.setText("")
+                    break
+            var.ui.txtSalario.setText(str(locale.currency(round(float(var.ui.txtSalario.text()), 2), grouping=True)))
         except Exception as error:
-            print("Error en ValSalario", error)
+            print('error en valSalario', error)
+
 
     @staticmethod
-    def valTelefono():
+    def valTelefono(self = None):
         try:
             telefono = var.ui.txtTlf.text()
             numeros = '1234567890'
-            if len(telefono) == 9:
-                if len(telefono) == len([n for n in telefono if n in numeros]):
-                    var.ui.lblValidarTlf.setStyleSheet('color:green;')
-                    var.ui.lblValidarTlf.setText('V')
-                    print("perfecto")
+            for n in telefono:
+                if n in numeros and len(telefono) == 9:
+                    pass
                 else:
-                    var.ui.lblValidarTlf.setStyleSheet('color:red;')
-                    var.ui.lblValidarTlf.setText('X')
-                    var.ui.txtTlf.setText(None)
-                    var.ui.txtTlf.setFocus()
-                    print("no perfecto")
-            else:
-                var.ui.lblValidarTlf.setStyleSheet('color:red;')
-                var.ui.lblValidarTlf.setText('X')
-                var.ui.txtTlf.setText(None)
-                var.ui.txtTlf.setFocus()
-                print("no perfecto")
+                    msg = QtWidgets.QMessageBox()
+                    msg.setWindowTitle('Aviso')
+                    msg.setIcon(QtWidgets.QMessageBox.Icon.Warning)
+                    msg.setText('Escriba un número de móvil correcto')
+                    msg.setStandardButtons(QtWidgets.QMessageBox.StandardButton.Ok)
+                    msg.button(QtWidgets.QMessageBox.StandardButton.Ok).setText('Aceptar')
+                    msg.setDefaultButton(QtWidgets.QMessageBox.StandardButton.Ok)
+                    msg.exec()
+                    var.ui.txtTlf.setText("")
+                    break
+
         except Exception as error:
             print("Error en ValTelefono", error)
 

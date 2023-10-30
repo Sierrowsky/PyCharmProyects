@@ -1,5 +1,6 @@
 import locale
 
+import conexion
 import var
 from PyQt6 import QtWidgets, QtCore
 
@@ -55,9 +56,8 @@ class Drivers():
         except Exception as error:
             print('error en valSalario', error)
 
-
     @staticmethod
-    def valTelefono(self = None):
+    def valTelefono(self=None):
         try:
             telefono = var.ui.txtTlf.text()
             numeros = '1234567890'
@@ -115,16 +115,25 @@ class Drivers():
 
     def altadriver(self):
         try:
-            driver = [var.ui.txtApel, var.ui.txtNombre, var.ui.txtTlf]
+            driver = [var.ui.txtDni, var.ui.txtFecha,
+                      var.ui.txtApel, var.ui.txtNombre,
+                      var.ui.txtDir, var.ui.txtTlf, var.ui.txtSalario]
             newdrivers = []
             newdrivers.append(1)
             for i in driver:
                 newdrivers.append(i.text().title())
+            prov = var.ui.cmbProv.currentText()
+            newdrivers.insert(5,prov)
+            muni = var.ui.cmbMun.currentText()
+            newdrivers.insert(6,muni)
             licencias = []
             chkLicencia = [var.ui.chkA, var.ui.chkB, var.ui.chkC, var.ui.chkD]
             for i in chkLicencia:
                 licencias.append(i.text())
             newdrivers.append(' - '.join(licencias))
+            print(newdrivers)
+            conexion.Conexion.guardar(newdrivers)
+            '''
             index = 0
             var.ui.tabDrivers.setRowCount(index + 1)  # Crea una fila
             var.ui.tabDrivers.setItem(index, 0, QtWidgets.QTableWidgetItem(str(newdrivers[0])))
@@ -135,6 +144,7 @@ class Drivers():
             var.ui.tabDrivers.item(index, 0).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
             var.ui.tabDrivers.item(index, 3).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
             var.ui.tabDrivers.item(index, 4).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
-            print(newdrivers)
+            
+            '''
         except Exception as error:
             print("Error en alta Driver", error)

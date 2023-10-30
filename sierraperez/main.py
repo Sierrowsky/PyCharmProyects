@@ -28,6 +28,7 @@ class Main(QtWidgets.QMainWindow):
         """
         var.ui.btnCalendar.clicked.connect(eventos.Eventos.abrirCalendar)
         var.ui.btnAltaDriver.clicked.connect(drivers.Drivers.altadriver)
+
         """
         Zona de eventos del MenuBar
         """
@@ -53,10 +54,14 @@ class Main(QtWidgets.QMainWindow):
         """
         eventos.Eventos.resizetabdrivers(self)
         """
+        eventos Combobox
+        """
+        var.ui.cmbProv.currentIndexChanged.connect(conexion.Conexion.selMuni)
+        """
         Ejecucion de diferentes funciones al lanzar la APP
         """
         eventos.Eventos.cargarstatusvar(self)
-        eventos.Eventos.cargapropia(self)
+
         rbtDriver = [var.ui.rbtTodos, var.ui.rbtAlta, var.ui.rbtBaja]
         for i in rbtDriver:
             i.toggled.connect(eventos.Eventos.selEstado)

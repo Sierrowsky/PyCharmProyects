@@ -18,21 +18,30 @@ class Conexion():
         try:
             var.ui.cmbProv.clear()
             query = QtSql.QSqlQuery()
-            query.prepare("select provincia from provincia")
-            if query.next():
+            query.prepare("select provincia from provincias")
+            if query.exec():
                 var.ui.cmbProv.addItem(' ')
                 while query.next():
                     var.ui.cmbProv.addItem(query.value(0))
         except Exception as error:
             print("Error en cargaProv", error)
-    def cargamun(self=None):
+    def selMuni(self=None):
         try:
+            id = 0
             var.ui.cmbMun.clear()
+            prov = var.ui.cmbProv.currentText()
             query = QtSql.QSqlQuery()
-            query.prepare("select municipio from municipio")
-            if query.next():
-                var.ui.cmbMun.addItem(' ')
+            query.prepare("select IdProv from provincias where provincia  = :prov")
+            query.bindValue(':prov',prov)
+            if query.exec():
                 while query.next():
-                    var.ui.cmbMun.addItem(query.value(0))
+                    id = query.value(0)
+            queryM = QtSql.QSqlQuery()
+            queryM.prepare("select municipio from municipios where IdProv = :id")
+            queryM.bindValue(':id', int(id))
+            if queryM.exec():
+                var.ui.cmbMun.addItem('')
+                while queryM.next():
+                    var.ui.cmbMun.addItem(queryM.value(0))
         except Exception as error:
             print("Error en cargaMun", error)

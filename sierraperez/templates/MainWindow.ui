@@ -540,7 +540,7 @@
              </widget>
             </item>
             <item>
-             <widget class="QComboBox" name="cmbProv_2">
+             <widget class="QComboBox" name="cmbMun">
               <property name="minimumSize">
                <size>
                 <width>120</width>

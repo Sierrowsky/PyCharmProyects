@@ -1,4 +1,6 @@
 from PyQt6 import QtWidgets, QtSql, QtCore
+
+import drivers
 import var
 
 
@@ -25,6 +27,7 @@ class Conexion():
                     var.ui.cmbProv.addItem(query.value(0))
         except Exception as error:
             print("Error en cargaProv", error)
+
     def selMuni(self=None):
         try:
             id = 0
@@ -32,7 +35,7 @@ class Conexion():
             prov = var.ui.cmbProv.currentText()
             query = QtSql.QSqlQuery()
             query.prepare("select IdProv from provincias where provincia  = :prov")
-            query.bindValue(':prov',prov)
+            query.bindValue(':prov', prov)
             if query.exec():
                 while query.next():
                     id = query.value(0)
@@ -45,3 +48,36 @@ class Conexion():
                     var.ui.cmbMun.addItem(queryM.value(0))
         except Exception as error:
             print("Error en cargaMun", error)
+
+    @staticmethod
+    def guardardri(newdrivers):
+        try:
+            query = QtSql.QSqlQuery()
+            query.prepare('insert into drivers(dnidri, altadri, apeldri, nombredri, direcciondri, '
+                          ' provdri, munidri, movildri, salario, carnet) VALUES(:dni, :alta, :apel '
+                          ' , :nombre, :direccion, :provincia, :municipio, :movil, :salario, :carnet)')
+            query.bindValue(':dni', str(newdrivers[0]))
+            query.bindValue(':alta', str(newdrivers[1]))
+            query.bindValue(':apel', str(newdrivers[2]))
+            query.bindValue(':nombre', str(newdrivers[3]))
+            query.bindValue(':direccion', str(newdrivers[4]))
+            query.bindValue(':provincia', str(newdrivers[5]))
+            query.bindValue(':municipio', str(newdrivers[6]))
+            query.bindValue(':movil', str(newdrivers[7]))
+            query.bindValue(':salario', str(newdrivers[8]))
+            query.bindValue(':carnet', str(newdrivers[9]))
+            if query.exec():
+                mbox = QtWidgets.QMessageBox()
+                mbox.setWindowTitle('Listo')
+                mbox.setIcon(QtWidgets.QMessageBox.Icon.Information)
+                mbox.setText('Empleado dado de alta')
+                mbox.exec()
+            else:
+                mbox = QtWidgets.QMessageBox()
+                mbox.setWindowTitle('Aviso')
+                mbox.setIcon(QtWidgets.QMessageBox.Icon.Warning)
+                mbox.setText(query.lastError().text())
+                mbox.exec()
+            #drivers.Drivers.cargarTabla(datosDri)
+        except Exception as error:
+            print("Error guardardri ", error)

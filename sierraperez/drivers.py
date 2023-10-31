@@ -119,20 +119,20 @@ class Drivers():
                       var.ui.txtApel, var.ui.txtNombre,
                       var.ui.txtDir, var.ui.txtTlf, var.ui.txtSalario]
             newdrivers = []
-            newdrivers.append(1)
             for i in driver:
                 newdrivers.append(i.text().title())
             prov = var.ui.cmbProv.currentText()
-            newdrivers.insert(5,prov)
+            newdrivers.insert(5, prov)
             muni = var.ui.cmbMun.currentText()
-            newdrivers.insert(6,muni)
+            newdrivers.insert(6, muni)
             licencias = []
             chkLicencia = [var.ui.chkA, var.ui.chkB, var.ui.chkC, var.ui.chkD]
             for i in chkLicencia:
-                licencias.append(i.text())
+                if i.isChecked():
+                    licencias.append(i.text())
             newdrivers.append(' - '.join(licencias))
             print(newdrivers)
-            conexion.Conexion.guardar(newdrivers)
+            conexion.Conexion.guardardri(newdrivers)
             '''
             index = 0
             var.ui.tabDrivers.setRowCount(index + 1)  # Crea una fila

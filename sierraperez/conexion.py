@@ -81,3 +81,17 @@ class Conexion():
             #drivers.Drivers.cargarTabla(datosDri)
         except Exception as error:
             print("Error guardardri ", error)
+
+    def mostrardrivers(self):
+        try:
+            registros=[]
+            query1 = QtSql.QSqlQuery()
+            query1.prepare('select codigo, apeldri, nombredri, movildri, carnet, bajadri from drivers')
+            if query1.exec():
+                while query1.next():
+                    row = [query1.value(i) for i in range(query1.record().count())]
+                    registros.append(row)
+            drivers.Drivers.cargartabladri(registros)
+            print(registros)
+        except Exception as error:
+                print('Error al mostrar resultados',error)

@@ -23,6 +23,7 @@ class Main(QtWidgets.QMainWindow):
         var.driver = drivers.Drivers()
         conexion.Conexion.conexion()
         conexion.Conexion.cargaprov()
+        conexion.Conexion.mostrardrivers(self)
         """
         Zona de eventos de botones
         """

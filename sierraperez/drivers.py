@@ -120,7 +120,15 @@ class Drivers():
                       var.ui.txtDir, var.ui.txtTlf, var.ui.txtSalario]
             newdrivers = []
             for i in driver:
-                newdrivers.append(i.text().title())
+                if i.text().strip():
+                    newdrivers.append(i.text().title())
+                else:
+                    mbox = QtWidgets.QMessageBox()
+                    mbox.setWindowTitle("Aviso")
+                    mbox.setIcon(QtWidgets.QMessageBox.Icon.Warning)
+                    mbox.setText("Tods los campos deben ser rellenados: \n DNI, Nombre, Fecha de alta y Movil")
+                    mbox.exec()
+                    return
             prov = var.ui.cmbProv.currentText()
             newdrivers.insert(5, prov)
             muni = var.ui.cmbMun.currentText()
@@ -143,8 +151,24 @@ class Drivers():
             var.ui.tabDrivers.setItem(index, 4, QtWidgets.QTableWidgetItem(str(newdrivers[4])))
             var.ui.tabDrivers.item(index, 0).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
             var.ui.tabDrivers.item(index, 3).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
-            var.ui.tabDrivers.item(index, 4).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
-            
+            var.ui.tabDrivers.item(index, 4).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)            
             '''
         except Exception as error:
             print("Error en alta Driver", error)
+
+    def cargartabladri(registros):
+        try:
+            index = 0
+            for registro in registros:
+                var.ui.tabDrivers.setRowCount(index + 1)  # crea una fila
+                var.ui.tabDrivers.setItem(index, 0, QtWidgets.QTableWidgetItem(str(registro[0])))
+                var.ui.tabDrivers.setItem(index, 1, QtWidgets.QTableWidgetItem(str(registro[1])))
+                var.ui.tabDrivers.setItem(index, 2, QtWidgets.QTableWidgetItem(str(registro[2])))
+                var.ui.tabDrivers.setItem(index, 3, QtWidgets.QTableWidgetItem(str(registro[3])))
+                var.ui.tabDrivers.setItem(index, 4, QtWidgets.QTableWidgetItem(str(registro[4])))
+                var.ui.tabDrivers.item(index, 0).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+                var.ui.tabDrivers.item(index, 3).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+                var.ui.tabDrivers.item(index, 4).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+                index += 1
+        except Exception as error:
+            print('error alta cliente', error)

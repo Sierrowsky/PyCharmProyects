@@ -92,6 +92,19 @@ class Conexion():
                     row = [query1.value(i) for i in range(query1.record().count())]
                     registros.append(row)
             drivers.Drivers.cargartabladri(registros)
-            print(registros)
         except Exception as error:
                 print('Error al mostrar resultados',error)
+
+    def onedriver(id):
+        try:
+            registro= []
+            query = QtSql.QSqlQuery
+            query.prepare('select * from drivers where codigo = :codigo')
+            query.bindValue(':codigo', int(id))
+            if query.exec():
+                while query.next():
+                    for i in range(12):
+                        registro.append(str(query.value(i)))
+            return registro
+        except Exception as error:
+            print('Error en onedriver', error)

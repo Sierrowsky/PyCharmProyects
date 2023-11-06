@@ -172,3 +172,21 @@ class Drivers():
                 index += 1
         except Exception as error:
             print('error alta cliente', error)
+
+    def cargadriver(self):
+        try:
+            Drivers.LimpiarPanel(self)
+            row = var.ui.tabDrivers.selectedItems()
+            fila = [dato.text() for dato in row]
+            registros = conexion.Conexion.onedriver(fila[0])
+            datos = [var.lblCoddb, var.ui.txtDni, var.ui.txtFecha, var.ui.txtApel, var.ui.txtNombre, var.ui.txtDir,
+                     var.ui.cmbProv, var.ui.cmbMun, var.ui.txtTlf, var.ui.txtSalario]
+            for i in datos:
+                datos[i].setText(str(registros[i]))
+                if i == 5:
+                    datos.setCurrentText(registros[i])
+                if i ==6:
+                    datos.setCurrentText(registros[i])
+            print(registros)
+        except Exception as error:
+            print('Error en cargadriver', error)

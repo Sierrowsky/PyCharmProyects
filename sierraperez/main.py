@@ -54,6 +54,7 @@ class Main(QtWidgets.QMainWindow):
         Eventos en tablas
         """
         eventos.Eventos.resizetabdrivers(self)
+        var.ui.actionlimpiarPaneldriver.triggered.connect(drivers.Drivers.LimpiarPanel)
         """
         eventos Combobox
         """

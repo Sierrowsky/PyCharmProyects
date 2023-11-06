@@ -33,7 +33,7 @@
   </property>
   <property name="windowIcon">
    <iconset>
-    <normaloff>../../../.designer/backup/img/Logo1.png</normaloff>../../../.designer/backup/img/Logo1.png</iconset>
+    <normaloff>../../../../../.designer/backup/img/Logo1.png</normaloff>../../../../../.designer/backup/img/Logo1.png</iconset>
   </property>
   <property name="layoutDirection">
    <enum>Qt::LeftToRight</enum>
@@ -89,12 +89,12 @@
           </column>
           <column>
            <property name="text">
-            <string>Nombre</string>
+            <string>Apellidos</string>
            </property>
           </column>
           <column>
            <property name="text">
-            <string>Apellidos</string>
+            <string>Nombre</string>
            </property>
           </column>
           <column>
@@ -340,7 +340,7 @@
               </property>
               <property name="icon">
                <iconset>
-                <normaloff>../../../.designer/backup/img/Calendar.png</normaloff>../../../.designer/backup/img/Calendar.png</iconset>
+                <normaloff>../../../../../.designer/backup/img/Calendar.png</normaloff>../../../../../.designer/backup/img/Calendar.png</iconset>
               </property>
               <property name="iconSize">
                <size>
@@ -975,7 +975,7 @@
   <action name="actionSalir">
    <property name="icon">
     <iconset>
-     <normaloff>../../../.designer/backup/img/exit_icon-icons.com_70975.ico</normaloff>../../../.designer/backup/img/exit_icon-icons.com_70975.ico</iconset>
+     <normaloff>../../../../../.designer/backup/img/exit_icon-icons.com_70975.ico</normaloff>../../../../../.designer/backup/img/exit_icon-icons.com_70975.ico</iconset>
    </property>
    <property name="text">
     <string>Salir</string>
@@ -984,7 +984,7 @@
   <action name="actionAcerca_de">
    <property name="icon">
     <iconset>
-     <normaloff>../../../.designer/backup/img/sign-question-icon_34359.ico</normaloff>../../../.designer/backup/img/sign-question-icon_34359.ico</iconset>
+     <normaloff>../../../../../.designer/backup/img/sign-question-icon_34359.ico</normaloff>../../../../../.designer/backup/img/sign-question-icon_34359.ico</iconset>
    </property>
    <property name="text">
     <string>Acerca de ...</string>
@@ -993,7 +993,7 @@
   <action name="barSalir">
    <property name="icon">
     <iconset>
-     <normaloff>../../../.designer/backup/img/exit_icon-icons.com_70975.ico</normaloff>../../../.designer/backup/img/exit_icon-icons.com_70975.ico</iconset>
+     <normaloff>../../../../../.designer/backup/img/exit_icon-icons.com_70975.ico</normaloff>../../../../../.designer/backup/img/exit_icon-icons.com_70975.ico</iconset>
    </property>
    <property name="text">
     <string>Salir</string>
@@ -1002,7 +1002,7 @@
   <action name="barLimpiarPanel">
    <property name="icon">
     <iconset>
-     <normaloff>../../../.designer/backup/img/reload_icon-icons.com_64795.ico</normaloff>../../../.designer/backup/img/reload_icon-icons.com_64795.ico</iconset>
+     <normaloff>../../../../../.designer/backup/img/reload_icon-icons.com_64795.ico</normaloff>../../../../../.designer/backup/img/reload_icon-icons.com_64795.ico</iconset>
    </property>
    <property name="text">
     <string>LimpiarPanel</string>

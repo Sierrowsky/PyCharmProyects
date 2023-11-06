@@ -184,9 +184,9 @@ class Drivers():
             for i in datos:
                 datos[i].setText(str(registros[i]))
                 if i == 5:
-                    datos.setCurrentText(registros[i])
-                if i ==6:
-                    datos.setCurrentText(registros[i])
+                    i.setCurrentText(registros[i])
+                if i == 6:
+                    i.setCurrentText(registros[i])
             print(registros)
         except Exception as error:
             print('Error en cargadriver', error)

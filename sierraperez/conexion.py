@@ -13,7 +13,7 @@ class Conexion():
             print("error de conexion")
             return False
         else:
-            print("conexion realizada?")
+            print("conexion realizada")
             return True
 
     def cargaprov(self=None):
@@ -95,12 +95,12 @@ class Conexion():
         except Exception as error:
                 print('Error al mostrar resultados',error)
 
-    def onedriver(id):
+    def onedriver(codigo):
         try:
-            registro= []
-            query = QtSql.QSqlQuery
+            registro = []
+            query = QtSql.QSqlQuery()
             query.prepare('select * from drivers where codigo = :codigo')
-            query.bindValue(':codigo', int(id))
+            query.bindValue(':codigo', int(codigo))
             if query.exec():
                 while query.next():
                     for i in range(12):
@@ -108,3 +108,11 @@ class Conexion():
             return registro
         except Exception as error:
             print('Error en onedriver', error)
+    #def coddri(dni):
+     #   try:
+      #      query = QtSql.QSqlQuery()
+       #     query.prepare('select codigo drom drivers where dnidri = :dni')
+        #    query.bindValue(':dni', str(dni))
+         #   if query.exec():
+          #      while query.next():
+           #         codigo = query.value(0)

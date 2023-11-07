@@ -170,6 +170,7 @@ class Drivers():
                 var.ui.tabDrivers.item(index, 3).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
                 var.ui.tabDrivers.item(index, 4).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
                 index += 1
+
         except Exception as error:
             print('error alta cliente', error)
 
@@ -179,14 +180,26 @@ class Drivers():
             row = var.ui.tabDrivers.selectedItems()
             fila = [dato.text() for dato in row]
             registros = conexion.Conexion.onedriver(fila[0])
-            datos = [var.lblCoddb, var.ui.txtDni, var.ui.txtFecha, var.ui.txtApel, var.ui.txtNombre, var.ui.txtDir,
+            datos = [var.ui.lblcoddb, var.ui.txtDni, var.ui.txtFecha, var.ui.txtApel, var.ui.txtNombre, var.ui.txtDir,
                      var.ui.cmbProv, var.ui.cmbMun, var.ui.txtTlf, var.ui.txtSalario]
-            for i in datos:
-                datos[i].setText(str(registros[i]))
-                if i == 5:
-                    i.setCurrentText(registros[i])
-                if i == 6:
-                    i.setCurrentText(registros[i])
-            print(registros)
+            for i, dato in enumerate(datos):
+                if i == 6 or i == 7:
+                    dato.setCurrentText(str(registros[i]))
+                else:
+                    dato.setText(str(registros[i]))
+            if 'A' in registros[10]:
+                var.ui.chkA.setChecked(True)
+            if 'B' in registros[10]:
+                var.ui.chkB.setChecked(True)
+            if 'C' in registros[10]:
+                var.ui.chkC.setChecked(True)
+            if 'D' in registros[10]:
+                var.ui.chkD.setChecked(True)
         except Exception as error:
             print('Error en cargadriver', error)
+    def buscaDri(self):
+        try:
+            dni = var.ui.txtDni
+            conexion.Conexion.coddri(dni)
+        except Exception as error:
+            print('Error buscadriver ',error)

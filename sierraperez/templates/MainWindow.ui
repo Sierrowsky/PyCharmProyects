@@ -76,6 +76,18 @@
             <verstretch>0</verstretch>
            </sizepolicy>
           </property>
+          <property name="font">
+           <font>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="frameShape">
+           <enum>QFrame::StyledPanel</enum>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Plain</enum>
+          </property>
           <property name="editTriggers">
            <set>QAbstractItemView::NoEditTriggers</set>
           </property>
@@ -84,6 +96,9 @@
           </property>
           <property name="selectionBehavior">
            <enum>QAbstractItemView::SelectRows</enum>
+          </property>
+          <property name="gridStyle">
+           <enum>Qt::SolidLine</enum>
           </property>
           <attribute name="verticalHeaderVisible">
            <bool>false</bool>
@@ -211,7 +226,7 @@
              <x>190</x>
              <y>10</y>
              <width>281</width>
-             <height>31</height>
+             <height>32</height>
             </rect>
            </property>
            <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -287,7 +302,7 @@
              </widget>
             </item>
             <item>
-             <widget class="QPushButton" name="pushButton">
+             <widget class="QPushButton" name="btnBuscarDni">
               <property name="minimumSize">
                <size>
                 <width>24</width>
@@ -375,7 +390,7 @@
               </property>
               <property name="icon">
                <iconset>
-                <normaloff>../../../../../.designer/backup/img/Calendar.png</normaloff>../../../../../.designer/backup/img/Calendar.png</iconset>
+                <normaloff>../img/Calendar.png</normaloff>../img/Calendar.png</iconset>
               </property>
               <property name="iconSize">
                <size>
@@ -1028,7 +1043,7 @@
   <action name="barSalir">
    <property name="icon">
     <iconset>
-     <normaloff>../../../../../.designer/backup/img/exit_icon-icons.com_70975.ico</normaloff>../../../../../.designer/backup/img/exit_icon-icons.com_70975.ico</iconset>
+     <normaloff>../img/exit_icon-icons.com_70975.ico</normaloff>../img/exit_icon-icons.com_70975.ico</iconset>
    </property>
    <property name="text">
     <string>Salir</string>
@@ -1037,7 +1052,7 @@
   <action name="barLimpiarPanel">
    <property name="icon">
     <iconset>
-     <normaloff>../../../../../.designer/backup/img/reload_icon-icons.com_64795.ico</normaloff>../../../../../.designer/backup/img/reload_icon-icons.com_64795.ico</iconset>
+     <normaloff>../img/reload_icon-icons.com_64795.ico</normaloff>../img/reload_icon-icons.com_64795.ico</iconset>
    </property>
    <property name="text">
     <string>LimpiarPanel</string>

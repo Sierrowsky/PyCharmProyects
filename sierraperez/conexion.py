@@ -108,11 +108,22 @@ class Conexion():
             return registro
         except Exception as error:
             print('Error en onedriver', error)
-    #def coddri(dni):
-     #   try:
-      #      query = QtSql.QSqlQuery()
-       #     query.prepare('select codigo drom drivers where dnidri = :dni')
-        #    query.bindValue(':dni', str(dni))
-         #   if query.exec():
-          #      while query.next():
-           #         codigo = query.value(0)
+
+    def codDri(dni):
+        try:
+            query = QtSql.QSqlQuery()
+            query.prepare('select codigo from drivers where dnidri= :dni')
+            query.bindValue(':dni', str(dni))
+            if query.exec():
+                while query.next():
+                    codigo = query.value(0)
+                    registro = Conexion.onedriver(codigo)
+                    return registro
+
+                mbox = QtWidgets.QMessageBox()
+                mbox.setWindowTitle('Aviso')
+                mbox.setIcon(QtWidgets.QMessageBox.Icon.Warning)
+                mbox.setText('El conductor no existe')
+                mbox.exec()
+        except Exception as error:
+            print('Error al buscar driver', error)

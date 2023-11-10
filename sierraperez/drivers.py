@@ -200,6 +200,6 @@ class Drivers():
     def buscaDri(self):
         try:
             dni = var.ui.txtDni
-            conexion.Conexion.coddri(dni)
+            conexion.Conexion.codDri(dni)
         except Exception as error:
             print('Error buscadriver ',error)

@@ -78,13 +78,13 @@ class Conexion():
                 mbox.setIcon(QtWidgets.QMessageBox.Icon.Warning)
                 mbox.setText(query.lastError().text())
                 mbox.exec()
-            #drivers.Drivers.cargarTabla(datosDri)
+            # drivers.Drivers.cargarTabla(datosDri)
         except Exception as error:
             print("Error guardardri ", error)
 
     def mostrardrivers(self):
         try:
-            registros=[]
+            registros = []
             query1 = QtSql.QSqlQuery()
             query1.prepare('select codigo, apeldri, nombredri, movildri, carnet, bajadri from drivers')
             if query1.exec():
@@ -93,7 +93,7 @@ class Conexion():
                     registros.append(row)
             drivers.Drivers.cargartabladri(registros)
         except Exception as error:
-                print('Error al mostrar resultados',error)
+            print('Error al mostrar resultados', error)
 
     def onedriver(codigo):
         try:
@@ -127,3 +127,26 @@ class Conexion():
                 mbox.exec()
         except Exception as error:
             print('Error al buscar driver', error)
+
+    def modifDriver(modifdrivers):
+        try:
+            print(133)
+            query = QtSql.QSqlQuery()
+            query.prepare('update drivers set dnidri = :dni , altadri = :alta , apeldri = :apel ,'
+                          'nombredri = :nombredri , direcciondri= :direccion , provdri = :provincia ,'
+                          'munidri = :municipio , movildri = :movil , salario =:salario , carnet = :carnet '
+                          'where codigo = :codigo')
+            query.bindValue(':codigo', str(modifdrivers[0]))
+            query.bindValue(':dni', str(modifdrivers[1]))
+            query.bindValue(':alta', str(modifdrivers[2]))
+            query.bindValue(':apel', str(modifdrivers[3]))
+            query.bindValue(':nombre', str(modifdrivers[4]))
+            query.bindValue(':direccion', str(modifdrivers[5]))
+            query.bindValue(':provincia', str(modifdrivers[6]))
+            query.bindValue(':municipio', str(modifdrivers[7]))
+            query.bindValue(':movil', str(modifdrivers[8]))
+            query.bindValue(':salario', str(modifdrivers[9]))
+            query.bindValue(':carnet', str(modifdrivers[10]))
+            print(149)
+        except Exception as error:
+            print('Error al modificar Driver', error)

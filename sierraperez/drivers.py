@@ -1,5 +1,7 @@
 import locale
 
+from PyQt6.QtGui import QColor
+
 import conexion
 import var
 from PyQt6 import QtWidgets, QtCore
@@ -197,9 +199,68 @@ class Drivers():
                 var.ui.chkD.setChecked(True)
         except Exception as error:
             print('Error en cargadriver', error)
-    def buscaDri(self):
+
+    def buscarDri(self):
         try:
-            dni = var.ui.txtDni
-            conexion.Conexion.codDri(dni)
+            dni = var.ui.txtDni.text()
+            registro = conexion.Conexion.codDri(dni)
+            if registro is None:
+                mbox = QtWidgets.QMessageBox()
+                mbox.setWindowTitle('Aviso')
+                mbox.setIcon(QtWidgets.QMessageBox.Icon.Warning)
+                mbox.setText("Error en la busqueda de dni")
+                mbox.exec()
+            else:
+                Drivers.cargadriver(registro)
+                Drivers.buscarDriverTabla(registro[0])
         except Exception as error:
-            print('Error buscadriver ',error)
+            print('error en busca de datos conductor', error)
+
+    def buscarDriverTabla(codigo):
+        dni = var.ui.txtDni.text()
+        registro = conexion.Conexion.codDri(dni)
+        try:
+            for fila in range(var.ui.tabDrivers.rowCount()):
+                if var.ui.tabDrivers.item(fila, 0).text() == str(codigo):
+                    var.ui.tabDrivers.scrollToItem(var.ui.tabDrivers.item(fila, 0))
+                    var.ui.tabDrivers.setItem(fila, 0, QtWidgets.QTableWidgetItem(str(registro[0])))
+                    var.ui.tabDrivers.setItem(fila, 1, QtWidgets.QTableWidgetItem(str(registro[3])))
+                    var.ui.tabDrivers.setItem(fila, 2, QtWidgets.QTableWidgetItem(str(registro[4])))
+                    var.ui.tabDrivers.setItem(fila, 3, QtWidgets.QTableWidgetItem(str(registro[8])))
+                    var.ui.tabDrivers.setItem(fila, 4, QtWidgets.QTableWidgetItem(str(registro[10])))
+                    var.ui.tabDrivers.setItem(fila, 5, QtWidgets.QTableWidgetItem(str(registro[11])))
+                    var.ui.tabDrivers.item(fila, 0).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+                    var.ui.tabDrivers.item(fila, 3).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+                    var.ui.tabDrivers.item(fila, 4).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+                    var.ui.tabDrivers.item(fila, 0).setBackground(QColor(255, 241, 150))
+                    var.ui.tabDrivers.item(fila, 1).setBackground(QColor(255, 241, 150))
+                    var.ui.tabDrivers.item(fila, 2).setBackground(QColor(255, 241, 150))
+                    var.ui.tabDrivers.item(fila, 3).setBackground(QColor(255, 241, 150))
+                    var.ui.tabDrivers.item(fila, 4).setBackground(QColor(255, 241, 150))
+                    var.ui.tabDrivers.item(fila, 5).setBackground(QColor(255, 241, 150))
+
+        except Exception as error:
+            print('No se ha podido seleccionar al driver en la tabla', error)
+
+    def modifDri (self):
+        try:
+            driver = [var.ui.txtDni, var.ui.txtFecha,
+                      var.ui.txtApel, var.ui.txtNombre,
+                      var.ui.txtDir, var.ui.txtTlf, var.ui.txtSalario]
+            modifdrivers = []
+            for i in driver:
+                if i.text().strip():
+                    modifdrivers.append(i.text().title())
+            prov = var.ui.cmbProv.currentText()
+            modifdrivers.insert(6, prov)
+            muni = var.ui.cmbMun.currentText()
+            modifdrivers.insert(7, muni)
+            licencias = []
+            chkLicencia = [var.ui.chkA, var.ui.chkB, var.ui.chkC, var.ui.chkD]
+            for i in chkLicencia:
+                if i.isChecked():
+                    licencias.append(i.text())
+            modifdrivers.append(' - '.join(licencias))
+            conexion.Conexion.modifDriver(modifdrivers)
+        except Exception as error:
+            print('Error en modifDri',error)

@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from PyQt6 import QtWidgets, QtSql, QtCore
 
 import drivers
@@ -82,7 +84,7 @@ class Conexion():
         except Exception as error:
             print("Error guardardri ", error)
 
-    def mostrardrivers(self):
+    def mostrardrivers(self = None):
         try:
             registros = []
             query1 = QtSql.QSqlQuery()
@@ -128,25 +130,61 @@ class Conexion():
         except Exception as error:
             print('Error al buscar driver', error)
 
-    def modifDriver(modifdrivers):
+    def modifDriver(modifdriver):
         try:
-            print(133)
             query = QtSql.QSqlQuery()
-            query.prepare('update drivers set dnidri = :dni , altadri = :alta , apeldri = :apel ,'
-                          'nombredri = :nombredri , direcciondri= :direccion , provdri = :provincia ,'
-                          'munidri = :municipio , movildri = :movil , salario =:salario , carnet = :carnet '
-                          'where codigo = :codigo')
-            query.bindValue(':codigo', str(modifdrivers[0]))
-            query.bindValue(':dni', str(modifdrivers[1]))
-            query.bindValue(':alta', str(modifdrivers[2]))
-            query.bindValue(':apel', str(modifdrivers[3]))
-            query.bindValue(':nombre', str(modifdrivers[4]))
-            query.bindValue(':direccion', str(modifdrivers[5]))
-            query.bindValue(':provincia', str(modifdrivers[6]))
-            query.bindValue(':municipio', str(modifdrivers[7]))
-            query.bindValue(':movil', str(modifdrivers[8]))
-            query.bindValue(':salario', str(modifdrivers[9]))
-            query.bindValue(':carnet', str(modifdrivers[10]))
-            print(149)
+            query.prepare('update drivers set dnidri = :dni, altadri = :alta ,nombredri = :nombre, apeldri = :apel, '
+                          'direcciondri = :direccion, provdri = :provincia, munidri = :municipio,'
+                          'movildri = :movil, salario = :salario, carnet = :carnet where codigo = :codigo')
+
+            query.bindValue(':codigo', int(modifdriver[0]))
+            query.bindValue(':dni', str(modifdriver[1]))
+            query.bindValue(':alta', str(modifdriver[2]))
+            query.bindValue(':apel', str(modifdriver[3]))
+            query.bindValue(':nombre', str(modifdriver[4]))
+            query.bindValue(':direccion', str(modifdriver[5]))
+            query.bindValue(':provincia', str(modifdriver[6]))
+            query.bindValue(':municipio', str(modifdriver[7]))
+            query.bindValue(':movil', str(modifdriver[8]))
+            query.bindValue(':salario', str(modifdriver[9]))
+            query.bindValue(':carnet', str(modifdriver[10]))
+
+            if query.exec():
+                mbox = QtWidgets.QMessageBox()
+                mbox.setWindowTitle('Aviso')
+                mbox.setIcon(QtWidgets.QMessageBox.Icon.Information)
+                mbox.setText("Datos conductor modificados")
+                mbox.exec()
+                Conexion.mostrardrivers()
+            else:
+                mbox = QtWidgets.QMessageBox()
+                mbox.setWindowTitle('Aviso')
+                mbox.setIcon(QtWidgets.QMessageBox.Icon.Warning)
+                mbox.setText("Error al modificar los datos del conductor")
+                mbox.exec()
         except Exception as error:
-            print('Error al modificar Driver', error)
+            print("error en modificar driver conexion", error)
+
+    def borrarDri(dni):
+        try:
+            fecha = datetime.today()
+            fecha = fecha.strftime('%d/%m/%y')
+            query = QtSql.QSqlQuery()
+            query.prepare(' Update drivers set bajadri = :fechabaja where '
+                          'dnidri = :dni')
+            query.bindValue(':fechabaja', str(fecha))
+            query.bindValue(':dni', str(dni))
+            if query.exec():
+                mbox = QtWidgets.QMessageBox()
+                mbox.setWindowTitle('Aviso')
+                mbox.setIcon(QtWidgets.QMessageBox.Icon.Information)
+                mbox.setText('Todo bien')
+                mbox.exec()
+            else:
+                mbox = QtWidgets.QMessageBox()
+                mbox.setWindowTitle('Aviso')
+                mbox.setIcon(QtWidgets.QMessageBox.Icon.Warning)
+                mbox.setText(query.lastError().text()+'Error baja Driver')
+                mbox.exec()
+        except Exception as error:
+            print('Error al borrar Driver', error)

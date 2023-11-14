@@ -1,6 +1,8 @@
 import locale
 
 from PyQt6.QtGui import QColor
+from PyQt6.QtWidgets import QComboBox, QCheckBox
+from PyQt6.uic.properties import QtGui
 
 import conexion
 import var
@@ -168,6 +170,7 @@ class Drivers():
                 var.ui.tabDrivers.setItem(index, 2, QtWidgets.QTableWidgetItem(str(registro[2])))
                 var.ui.tabDrivers.setItem(index, 3, QtWidgets.QTableWidgetItem(str(registro[3])))
                 var.ui.tabDrivers.setItem(index, 4, QtWidgets.QTableWidgetItem(str(registro[4])))
+                var.ui.tabDrivers.setItem(index, 5, QtWidgets.QTableWidgetItem(str(registro[5])))
                 var.ui.tabDrivers.item(index, 0).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
                 var.ui.tabDrivers.item(index, 3).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
                 var.ui.tabDrivers.item(index, 4).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
@@ -176,7 +179,54 @@ class Drivers():
         except Exception as error:
             print('error alta cliente', error)
 
+    def buscarDriverTabla(codigo):
+        try:
+            tabla = var.ui.tabDrivers
+            for fila in range(tabla.rowCount()):
+                item = tabla.item(fila, 0)
+                valorCelda = item.text()
+                if valorCelda == str(codigo):
+                    tabla.selectRow(fila)
+                    tabla.scrollToItem(item)
+                    Drivers.cargadriver(self=None)
+        except Exception as error:
+            print('No se ha podido seleccionar al driver en la tabla', error)
+
+    def bucarDni(self):
+        try:
+            registro = conexion.Conexion.codDri(var.ui.txtDni.text())
+            if registro is not None:
+                Drivers.buscarDriverTabla(registro[0])
+
+        except Exception as error:
+            print('error al buscar dni ', error)
+
     def cargadriver(self):
+        try:
+            Drivers.LimpiarPanel(self)
+            row = var.ui.tabDrivers.selectedItems()
+            fila = [dato.text() for dato in row]
+            registro = conexion.Conexion.onedriver(fila[0])
+            datos = [var.ui.lblcoddb, var.ui.txtDni, var.ui.txtFecha, var.ui.txtApel, var.ui.txtNombre, var.ui.txtDir,
+                     var.ui.cmbProv, var.ui.cmbMun, var.ui.txtTlf, var.ui.txtSalario,
+                     var.ui.chkA, var.ui.chkB, var.ui.chkC, var.ui.chkD]
+            j = 0
+            carnets = registro[10]
+            for i in datos:
+
+                if type(i) == QComboBox:
+                    i.setCurrentText(str(registro[j]))
+                    j = j + 1
+                elif type(i) == QCheckBox:
+                    Drivers.ValidarDni(carnets)
+                    j = j + 1
+                else:
+                    i.setText(registro[j])
+                    j = j + 1
+        except Exception as error:
+            print('error al cargar datos de 1 cliente ', error)
+
+    def b(self):
         try:
             Drivers.LimpiarPanel(self)
             row = var.ui.tabDrivers.selectedItems()
@@ -200,7 +250,7 @@ class Drivers():
         except Exception as error:
             print('Error en cargadriver', error)
 
-    def buscarDri(self):
+    def a(self):
         try:
             dni = var.ui.txtDni.text()
             registro = conexion.Conexion.codDri(dni)
@@ -216,12 +266,17 @@ class Drivers():
         except Exception as error:
             print('error en busca de datos conductor', error)
 
-    def buscarDriverTabla(codigo):
-        dni = var.ui.txtDni.text()
-        registro = conexion.Conexion.codDri(dni)
+    def c(self):
         try:
+            dni = var.ui.txtDni.text()
+            registro = conexion.Conexion.codDri(dni)
+            Drivers.cargadriver(registro)
+            registros = conexion.Conexion.mostrardrivers(self=None)
+            Drivers.cargartabladri(registros)
+            codigo = var.ui.lblcoddb.text()
             for fila in range(var.ui.tabDrivers.rowCount()):
                 if var.ui.tabDrivers.item(fila, 0).text() == str(codigo):
+                    # var.ui.tabDrivers.selectRow(fila)
                     var.ui.tabDrivers.scrollToItem(var.ui.tabDrivers.item(fila, 0))
                     var.ui.tabDrivers.setItem(fila, 0, QtWidgets.QTableWidgetItem(str(registro[0])))
                     var.ui.tabDrivers.setItem(fila, 1, QtWidgets.QTableWidgetItem(str(registro[3])))
@@ -232,35 +287,53 @@ class Drivers():
                     var.ui.tabDrivers.item(fila, 0).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
                     var.ui.tabDrivers.item(fila, 3).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
                     var.ui.tabDrivers.item(fila, 4).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
-                    var.ui.tabDrivers.item(fila, 0).setBackground(QColor(255, 241, 150))
-                    var.ui.tabDrivers.item(fila, 1).setBackground(QColor(255, 241, 150))
-                    var.ui.tabDrivers.item(fila, 2).setBackground(QColor(255, 241, 150))
-                    var.ui.tabDrivers.item(fila, 3).setBackground(QColor(255, 241, 150))
-                    var.ui.tabDrivers.item(fila, 4).setBackground(QColor(255, 241, 150))
-                    var.ui.tabDrivers.item(fila, 5).setBackground(QColor(255, 241, 150))
-
+                    var.ui.tabDrivers.item(fila, 0).setBackground(QtGui.QColor(255, 241, 150))
+                    var.ui.tabDrivers.item(fila, 1).setBackground(QtGui.QColor(255, 241, 150))
+                    var.ui.tabDrivers.item(fila, 2).setBackground(QtGui.QColor(255, 241, 150))
+                    var.ui.tabDrivers.item(fila, 3).setBackground(QtGui.QColor(255, 241, 150))
+                    var.ui.tabDrivers.item(fila, 4).setBackground(QtGui.QColor(255, 241, 150))
+                    var.ui.tabDrivers.item(fila, 5).setBackground(QtGui.QColor(255, 241, 150))
+                    break
         except Exception as error:
-            print('No se ha podido seleccionar al driver en la tabla', error)
+            print(error, "en busca de datos de un conductor")
 
-    def modifDri (self):
+    def modifDri(self):
         try:
-            driver = [var.ui.txtDni, var.ui.txtFecha,
-                      var.ui.txtApel, var.ui.txtNombre,
-                      var.ui.txtDir, var.ui.txtTlf, var.ui.txtSalario]
-            modifdrivers = []
+            driver = [var.ui.lblcoddb,
+                      var.ui.txtDni,
+                      var.ui.txtFecha,
+                      var.ui.txtApel,
+                      var.ui.txtNombre,
+                      var.ui.txtDir,
+                      var.ui.txtTlf,
+                      var.ui.txtSalario]
+            modifdriver = []
             for i in driver:
-                if i.text().strip():
-                    modifdrivers.append(i.text().title())
+                modifdriver.append(i.text().title())
+
             prov = var.ui.cmbProv.currentText()
-            modifdrivers.insert(6, prov)
+            modifdriver.insert(6, prov)
             muni = var.ui.cmbMun.currentText()
-            modifdrivers.insert(7, muni)
+            modifdriver.insert(7, muni)
+
             licencias = []
-            chkLicencia = [var.ui.chkA, var.ui.chkB, var.ui.chkC, var.ui.chkD]
-            for i in chkLicencia:
+            chklicencia = [var.ui.chkA, var.ui.chkB, var.ui.chkC, var.ui.chkD]
+            for i in chklicencia:
                 if i.isChecked():
                     licencias.append(i.text())
-            modifdrivers.append(' - '.join(licencias))
-            conexion.Conexion.modifDriver(modifdrivers)
+            modifdriver.append('/'.join(licencias))
+            conexion.Conexion.modifDriver(modifdriver)
         except Exception as error:
-            print('Error en modifDri',error)
+            print('Error en modifDri', error)
+
+    def borrarDri(self):
+        try:
+            dni = var.ui.txtDni.text()
+            conexion.Conexion.borrarDri(dni)
+            conexion.Conexion.mostrardrivers()
+        except Exception as error:
+            mbox = QtWidgets.QMessageBox()
+            mbox.setWindowTitle('Aviso')
+            mbox.setIcon(QtWidgets.QMessageBox.Icon.Warning)
+            mbox.setText("Error al borrrar al Driver")
+            mbox.exec()

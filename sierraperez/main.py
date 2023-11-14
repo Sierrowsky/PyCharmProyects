@@ -29,8 +29,9 @@ class Main(QtWidgets.QMainWindow):
         """
         var.ui.btnCalendar.clicked.connect(eventos.Eventos.abrirCalendar)
         var.ui.btnAltaDriver.clicked.connect(drivers.Drivers.altadriver)
-        var.ui.btnBuscarDni.clicked.connect(drivers.Drivers.buscarDri)
+        var.ui.btnBuscarDni.clicked.connect(drivers.Drivers.bucarDni)
         var.ui.btnModifDriver.clicked.connect(drivers.Drivers.modifDri)
+        var.ui.btnBajaDriver.clicked.connect(drivers.Drivers.borrarDri)
 
         """
         Zona de eventos del MenuBar

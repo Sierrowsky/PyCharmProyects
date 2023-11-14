@@ -167,6 +167,8 @@ class Conexion():
 
     def borrarDri(dni):
         try:
+            query1=QtSql.QSqlQuery()
+            query1.prepare('Select bajadri from drivers')
             fecha = datetime.today()
             fecha = fecha.strftime('%d/%m/%y')
             query = QtSql.QSqlQuery()
@@ -174,6 +176,7 @@ class Conexion():
                           'dnidri = :dni')
             query.bindValue(':fechabaja', str(fecha))
             query.bindValue(':dni', str(dni))
+
             if query.exec():
                 mbox = QtWidgets.QMessageBox()
                 mbox.setWindowTitle('Aviso')

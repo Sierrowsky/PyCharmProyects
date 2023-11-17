@@ -62,6 +62,7 @@ class Main(QtWidgets.QMainWindow):
         eventos Combobox
         """
         var.ui.cmbProv.currentIndexChanged.connect(conexion.Conexion.selMuni)
+        var.ui.r
         """
         Ejecucion de diferentes funciones al lanzar la APP
         """

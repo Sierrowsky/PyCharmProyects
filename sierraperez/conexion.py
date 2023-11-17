@@ -74,13 +74,14 @@ class Conexion():
                 mbox.setIcon(QtWidgets.QMessageBox.Icon.Information)
                 mbox.setText('Empleado dado de alta')
                 mbox.exec()
+                Conexion.mostrardrivers()
             else:
                 mbox = QtWidgets.QMessageBox()
                 mbox.setWindowTitle('Aviso')
                 mbox.setIcon(QtWidgets.QMessageBox.Icon.Warning)
                 mbox.setText(query.lastError().text())
                 mbox.exec()
-            # drivers.Drivers.cargarTabla(datosDri)
+
         except Exception as error:
             print("Error guardardri ", error)
 
@@ -191,3 +192,26 @@ class Conexion():
                 mbox.exec()
         except Exception as error:
             print('Error al borrar Driver', error)
+    @staticmethod
+    def consulta_drivers(fechaBaja):
+        try:
+            registros = []
+            query1 = QtSql.QSqlQuery()
+
+            if fechaBaja == 2:
+                query1.prepare("select codigo, apellidos,nombre,telefono, carnet, fechaBaja from drivers")
+            elif fechaBaja == 1:
+                query1.prepare(
+                    "select codigo, apellidos,nombre,telefono, carnet, fechaBaja from drivers where fechaBaja is null")
+            elif fechaBaja == 0:
+                query1.prepare(
+                    "select codigo, apellidos,nombre,telefono, carnet, fechaBaja from drivers where fechaBaja is not null")
+
+            if query1.exec():
+                while query1.next():
+                    row = [query1.value(i) for i in range(query1.record().count())]
+                    registros.append(row)
+            return registros
+
+        except Exception as error:
+            print('Erros mostrar Resultados', error)

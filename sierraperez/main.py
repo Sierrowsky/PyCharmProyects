@@ -21,6 +21,7 @@ class Main(QtWidgets.QMainWindow):
         var.salir = Salir()
         var.about = About()
         var.driver = drivers.Drivers()
+        var.dlgAbrir = FileDialogAbrir()
         conexion.Conexion.conexion()
         conexion.Conexion.cargaprov()
         conexion.Conexion.mostrardrivers(self)
@@ -38,6 +39,7 @@ class Main(QtWidgets.QMainWindow):
         """
         var.ui.actionSalir.triggered.connect(eventos.Eventos.Salir)
         var.ui.actionAcerca_de.triggered.connect(eventos.Eventos.acercade)
+        var.ui.actionCrear_Copias_Seguridad.triggered.connect(eventos.Eventos.crearCopiaSeguridad)
 
         """
         Zona de eventos de las cajas de texto
@@ -62,7 +64,7 @@ class Main(QtWidgets.QMainWindow):
         eventos Combobox
         """
         var.ui.cmbProv.currentIndexChanged.connect(conexion.Conexion.selMuni)
-        var.ui.r
+        #var.ui.r
         """
         Ejecucion de diferentes funciones al lanzar la APP
         """
@@ -87,3 +89,4 @@ if __name__ == '__main__':
     window = Main()
     window.show()
     sys.exit(app.exec())
+

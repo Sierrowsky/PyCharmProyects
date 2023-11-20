@@ -1,9 +1,12 @@
+import os.path
+import shutil
 import sys
 from datetime import datetime
 
 import var
 from Salir import *
 from main import locale
+import zipfile
 
 class Eventos():
     def Salir(self):
@@ -101,3 +104,28 @@ class Eventos():
             var.ui.txtSalario.setText(str(locale.currency(float(var.ui.txtSalario.text()))))
         except Exception as error:
             print("Error en LetCap ", error)
+    def crearCopiaSeguridad(self):
+        try:
+            fecha =datetime.today()
+            fecha = fecha.strftime('%Y_%m_%d_%H_%M_%S')
+            copia = (str(fecha+'_backup.zip'))
+            directorio, filename = var.dlgAbrir.getSaveFileName(None,'Guardar Copia Seguridad', copia, '.zip')
+            if var.dlgAbrir.accept and filename != '':
+                fichzip = zipfile.ZipFile(copia,'w')
+                fichzip.write(var.bbdd, os.path.basename(var.bbdd),zipfile.ZIP_DEFLATED)
+                fichzip.close()
+                shutil.move(str(copia),str(directorio))
+
+                mbox = QtWidgets.QMessageBox()
+                mbox.setWindowTitle('Aviso')
+                mbox.setIcon(QtWidgets.QMessageBox.Icon.Information)
+                mbox.setText('Copia de seguridad creada')
+                mbox.exec()
+
+        except Exception as error:
+            print("Error crear copias seguridad",error)
+            mbox = QtWidgets.QMessageBox()
+            mbox.setWindowTitle('Aviso')
+            mbox.setIcon(QtWidgets.QMessageBox.Icon.Warning)
+            mbox.setText('Error crear copias seguridad')
+            mbox.exec()

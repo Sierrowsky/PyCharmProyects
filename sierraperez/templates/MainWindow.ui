@@ -1276,7 +1276,15 @@
     </property>
     <addaction name="actionAcerca_de"/>
    </widget>
+   <widget class="QMenu" name="menuHerramientas">
+    <property name="title">
+     <string>Herramientas</string>
+    </property>
+    <addaction name="actionCrear_Copias_Seguridad"/>
+    <addaction name="actionRestaurar_Copias_Seguridad"/>
+   </widget>
    <addaction name="menuArchivo"/>
+   <addaction name="menuHerramientas"/>
    <addaction name="menuHelp"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
@@ -1329,6 +1337,33 @@
    </property>
    <property name="text">
     <string>LimpiarPanel</string>
+   </property>
+  </action>
+  <action name="actionCrear_Copias_Seguridad">
+   <property name="icon">
+    <iconset>
+     <normaloff>../img/web_ui_database_icon_233606.ico</normaloff>../img/web_ui_database_icon_233606.ico</iconset>
+   </property>
+   <property name="text">
+    <string>Crear Copias Seguridad</string>
+   </property>
+   <property name="shortcut">
+    <string>Alt+S</string>
+   </property>
+   <property name="shortcutVisibleInContextMenu">
+    <bool>false</bool>
+   </property>
+  </action>
+  <action name="actionRestaurar_Copias_Seguridad">
+   <property name="icon">
+    <iconset>
+     <normaloff>../img/web_ui_database_icon_233572.ico</normaloff>../img/web_ui_database_icon_233572.ico</iconset>
+   </property>
+   <property name="text">
+    <string>Restaurar Copias Seguridad</string>
+   </property>
+   <property name="shortcut">
+    <string>Alt+R</string>
    </property>
   </action>
  </widget>

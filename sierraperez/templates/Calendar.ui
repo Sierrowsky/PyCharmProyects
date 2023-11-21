@@ -30,7 +30,7 @@
   </property>
   <property name="windowIcon">
    <iconset>
-    <normaloff>../../.designer/backup/img/Logo1.png</normaloff>../../.designer/backup/img/Logo1.png</iconset>
+    <normaloff>../img/Logo1.png</normaloff>../img/Logo1.png</iconset>
   </property>
   <property name="modal">
    <bool>true</bool>

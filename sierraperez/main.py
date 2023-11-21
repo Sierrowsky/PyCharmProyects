@@ -40,6 +40,7 @@ class Main(QtWidgets.QMainWindow):
         var.ui.actionSalir.triggered.connect(eventos.Eventos.Salir)
         var.ui.actionAcerca_de.triggered.connect(eventos.Eventos.acercade)
         var.ui.actionCrear_Copias_Seguridad.triggered.connect(eventos.Eventos.crearCopiaSeguridad)
+        var.ui.actionRestaurar_Copias_Seguridad.triggered.connect(eventos.Eventos.restaurarCopiaSeguridad)
 
         """
         Zona de eventos de las cajas de texto
@@ -69,10 +70,9 @@ class Main(QtWidgets.QMainWindow):
         Ejecucion de diferentes funciones al lanzar la APP
         """
         eventos.Eventos.cargarstatusvar(self)
+        var.ui.buttonGroup.buttonClicked.connect(conexion.Conexion.selEstado)
 
-        rbtDriver = [var.ui.rbtTodos, var.ui.rbtAlta, var.ui.rbtBaja]
-        for i in rbtDriver:
-            i.toggled.connect(eventos.Eventos.selEstado)
+
 
     def closeEvent(self, event):
         mbox = QtWidgets.QMessageBox.information(self, " Salir ", "¿Estas seguro que quieres salir?",

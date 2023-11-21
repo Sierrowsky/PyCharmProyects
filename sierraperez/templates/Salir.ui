@@ -28,6 +28,10 @@
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>../img/Logo1.png</normaloff>../img/Logo1.png</iconset>
+  </property>
   <property name="modal">
    <bool>true</bool>
   </property>

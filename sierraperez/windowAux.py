@@ -34,6 +34,7 @@ class About(QtWidgets.QDialog):
         var.about.setupUi(self)
         var.about.btnCerrraAbout.clicked.connect(eventos.Eventos.btnCerrarAbout)
 
+
 class FileDialogAbrir(QtWidgets.QFileDialog):
     def __init__(self):
-        super(FileDialogAbrir,self).__init__()
+        super(FileDialogAbrir, self).__init__()

@@ -7,9 +7,9 @@ import var
 
 
 class Conexion():
-
+    @staticmethod
     def conexion(self=None):
-        var.bbdd='bbdd.sqlite'
+        var.bbdd = 'bbdd.sqlite'
         db = QtSql.QSqlDatabase.addDatabase('QSQLITE')
         db.setDatabaseName(var.bbdd)
         if not db.open():
@@ -19,6 +19,7 @@ class Conexion():
             print("conexion realizada")
             return True
 
+    @staticmethod
     def cargaprov(self=None):
         try:
             var.ui.cmbProv.clear()
@@ -31,6 +32,7 @@ class Conexion():
         except Exception as error:
             print("Error en cargaProv", error)
 
+    @staticmethod
     def selMuni(self=None):
         try:
             id = 0
@@ -86,7 +88,8 @@ class Conexion():
         except Exception as error:
             print("Error guardardri ", error)
 
-    def mostrardrivers(self = None):
+    @staticmethod
+    def mostrardrivers(self=None):
         try:
             registros = []
             query1 = QtSql.QSqlQuery()
@@ -99,6 +102,42 @@ class Conexion():
         except Exception as error:
             print('Error al mostrar resultados', error)
 
+    @staticmethod
+    def SelectDrivers(estado):
+        try:
+            registros = []
+            if int(estado) == 0:
+                query = QtSql.QSqlQuery()
+                query.prepare('select codigo, apeldri, nombredri, movildri, carnet, bajadri from drivers')
+                if query.exec():
+                    while query.next():
+                        row = [query.value(i) for i in range(query.record().count())]
+                        registros.append(row)
+                    drivers.Drivers.cargartabladri(registros)
+            elif int(estado) == 1:
+                query = QtSql.QSqlQuery()
+                query.prepare(
+                    'select codigo, apeldri, nombredri, movildri, carnet, '
+                    'bajadri from drivers where bajadri is null')
+                if query.exec():
+                    while query.next():
+                        row = [query.value(i) for i in range(query.record().count())]
+                        registros.append(row)
+                    drivers.Drivers.cargartabladri(registros)
+            elif int(estado) == 2:
+                query = QtSql.QSqlQuery()
+                query.prepare(
+                    'select codigo, apeldri, nombredri, movildri, carnet, bajadri '
+                    'from drivers where bajadri is not null')
+                if query.exec():
+                    while query.next():
+                        row = [query.value(i) for i in range(query.record().count())]
+                        registros.append(row)
+                    drivers.Drivers.cargartabladri(registros)
+        except Exception as error:
+            print("Error SelectDrivers ", error)
+
+    @staticmethod
     def onedriver(codigo):
         try:
             registro = []
@@ -113,6 +152,7 @@ class Conexion():
         except Exception as error:
             print('Error en onedriver', error)
 
+    @staticmethod
     def codDri(dni):
         try:
             query = QtSql.QSqlQuery()
@@ -132,6 +172,7 @@ class Conexion():
         except Exception as error:
             print('Error al buscar driver', error)
 
+    @staticmethod
     def modifDriver(modifdriver):
         try:
             query = QtSql.QSqlQuery()
@@ -167,9 +208,10 @@ class Conexion():
         except Exception as error:
             print("error en modificar driver conexion", error)
 
+    @staticmethod
     def borrarDri(dni):
         try:
-            query1=QtSql.QSqlQuery()
+            query1 = QtSql.QSqlQuery()
             query1.prepare('Select bajadri from drivers')
             fecha = datetime.today()
             fecha = fecha.strftime('%d/%m/%y')
@@ -189,10 +231,24 @@ class Conexion():
                 mbox = QtWidgets.QMessageBox()
                 mbox.setWindowTitle('Aviso')
                 mbox.setIcon(QtWidgets.QMessageBox.Icon.Warning)
-                mbox.setText(query.lastError().text()+'Error baja Driver')
+                mbox.setText(query.lastError().text() + 'Error baja Driver')
                 mbox.exec()
         except Exception as error:
             print('Error al borrar Driver', error)
+    @staticmethod
+    def selEstado(self):
+        try:
+            if var.ui.rbtTodos.isChecked():
+                estado = 0
+                Conexion.SelectDrivers(estado)
+            elif var.ui.rbtAlta.isChecked():
+                estado = 1
+                Conexion.SelectDrivers(estado)
+            elif var.ui.rbtBaja.isChecked():
+                estado = 2
+                Conexion.SelectDrivers(estado)
+        except Exception as error:
+            print("Error en selEstado", error)
     @staticmethod
     def consulta_drivers(fechaBaja):
         try:

@@ -101,19 +101,16 @@ class Drivers():
                 if len(dni) == len([n for n in dni if n in numeros]) and tabla[int(dni) % 23] == dig_control:
                     var.ui.lblValidarDni.setStyleSheet('color:green;')
                     var.ui.lblValidarDni.setText('V')
-                    print("perfecto")
                 else:
                     var.ui.lblValidarDni.setStyleSheet('color:red;')
                     var.ui.lblValidarDni.setText('X')
                     var.ui.txtDni.setText(None)
                     var.ui.txtDni.setFocus()
-                    print("no perfecto")
             else:
                 var.ui.lblValidarDni.setStyleSheet('color:red;')
                 var.ui.lblValidarDni.setText('X')
                 var.ui.txtDni.setText(None)
                 var.ui.txtDni.setFocus()
-                print("no perfecto")
         except Exception as error:
             print("error en validar dni ", error)
 

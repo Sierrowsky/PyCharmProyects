@@ -41,6 +41,7 @@ class Main(QtWidgets.QMainWindow):
         var.ui.actionAcerca_de.triggered.connect(eventos.Eventos.acercade)
         var.ui.actionCrear_Copias_Seguridad.triggered.connect(eventos.Eventos.crearCopiaSeguridad)
         var.ui.actionRestaurar_Copias_Seguridad.triggered.connect(eventos.Eventos.restaurarCopiaSeguridad)
+        var.ui.actionExportar_Datos_xls.triggered.connect(eventos.Eventos.exportardatosxls)
 
         """
         Zona de eventos de las cajas de texto

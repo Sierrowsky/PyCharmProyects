@@ -2,6 +2,10 @@ import os.path
 import shutil
 import sys
 from datetime import datetime
+
+import xlrd
+import xlwt
+
 from conexion import *
 import conexion
 import var
@@ -81,7 +85,6 @@ class Eventos():
         except Exception as error:
             print("Error en cargapropia ", error)
 
-
     @staticmethod
     def resizetabdrivers(self):
         try:
@@ -146,7 +149,8 @@ class Eventos():
                 mbox.setIcon(QtWidgets.QMessageBox.Icon.Information)
                 mbox.setText('Copia de seguridad Restaurada')
                 mbox.exec()
-            else: var.dlgAbrir.hide()
+            else:
+                var.dlgAbrir.hide()
             conexion.Conexion.mostrardrivers()
 
         except Exception as error:
@@ -155,4 +159,46 @@ class Eventos():
             mbox.setWindowTitle('Aviso')
             mbox.setIcon(QtWidgets.QMessageBox.Icon.Warning)
             mbox.setText('Error al restaurar copias seguridad')
+            mbox.exec()
+
+    def exportardatosxls(self):
+        try:
+            fecha = datetime.today()
+            fecha = fecha.strftime('%Y_%m_%d_%H_%M_%S')
+            file = (str(fecha) + '_Datos.xls')
+            directorio, filename = var.dlgAbrir.getSaveFileName(None, 'Exportar Datos en Fichero XLS', file, '.xls')
+            if var.dlgAbrir.accept and filename != '':
+                wb = xlwt.Workbook()
+                sheet1 = wb.add_sheet('Conductores')
+                sheet1.write(0, 0, 'ID')
+                sheet1.write(0, 1, 'DNI')
+                sheet1.write(0, 2, 'Fecha Alta')
+                sheet1.write(0, 3, 'Apellidos')
+                sheet1.write(0, 4, 'Nombre')
+                sheet1.write(0, 5, 'Dirección')
+                sheet1.write(0, 6, 'Provincia')
+                sheet1.write(0, 7, 'Municipio')
+                sheet1.write(0, 8, 'Telefono')
+                sheet1.write(0, 9, 'Salario')
+                sheet1.write(0, 10, 'TipoCarnet')
+                sheet1.write(0, 11, 'Fechabaja')
+                registros = conexion.Conexion.selectDriverstodos(self)
+                for j, registros in enumerate(registros):
+                    for i, valor in enumerate(registros):
+                        sheet1.write(j + 1, i, str(valor))
+                wb.save(directorio)
+                mbox = QtWidgets.QMessageBox()
+                mbox.setModal(True)
+                mbox.setWindowTitle('Aviso')
+                mbox.setIcon(QtWidgets.QMessageBox.Icon.Information)
+                mbox.setText('Copia de seguridad creada')
+                mbox.exec()
+
+
+
+        except Exception as error:
+            mbox = QtWidgets.QMessageBox()
+            mbox.setWindowTitle('Aviso')
+            mbox.setIcon(QtWidgets.QMessageBox.Icon.Warning)
+            mbox.setText('Error al exportar datros', error)
             mbox.exec()

@@ -52,7 +52,7 @@ class Ui_dlgAbout(object):
         self.label_3.setText("")
         self.label_3.setObjectName("label_3")
         self.label_4 = QtWidgets.QLabel(parent=self.frame)
-        self.label_4.setGeometry(QtCore.QRect(20, 120, 151, 16))
+        self.label_4.setGeometry(QtCore.QRect(20, 120, 171, 16))
         self.label_4.setObjectName("label_4")
         self.label_5 = QtWidgets.QLabel(parent=self.frame)
         self.label_5.setGeometry(QtCore.QRect(20, 20, 91, 91))

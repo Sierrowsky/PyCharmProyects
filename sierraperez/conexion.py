@@ -272,3 +272,16 @@ class Conexion():
 
         except Exception as error:
             print('Erros mostrar Resultados', error)
+
+    def selectDriverstodos(self):
+        try:
+            registros = []
+            query = QtSql.QSqlQuery()
+            query.prepare('Select * from drivers order by apeldri')
+            if query.exec():
+                while query.next():
+                    row = [query.value(i) for i in range(query.record().count())]  # funcion lambda
+                    registros.append(row)
+            return registros
+        except Exception as error:
+            print('SelectDriversTodos', error)

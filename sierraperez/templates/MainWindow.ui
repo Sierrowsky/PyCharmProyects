@@ -33,7 +33,7 @@
   </property>
   <property name="windowIcon">
    <iconset>
-    <normaloff>../../../.designer/img/Logo1.png</normaloff>../../../.designer/img/Logo1.png</iconset>
+    <normaloff>../../../../.designer/img/Logo1.png</normaloff>../../../../.designer/img/Logo1.png</iconset>
   </property>
   <property name="layoutDirection">
    <enum>Qt::LeftToRight</enum>
@@ -350,7 +350,7 @@ background-color:rgb(100,100,100);
                    </property>
                    <property name="icon">
                     <iconset>
-                     <normaloff>../../../.designer/img/3844432-magnifier-search-zoom_110300.ico</normaloff>../../../.designer/img/3844432-magnifier-search-zoom_110300.ico</iconset>
+                     <normaloff>../img/3844432-magnifier-search-zoom_110300.ico</normaloff>../img/3844432-magnifier-search-zoom_110300.ico</iconset>
                    </property>
                    <property name="iconSize">
                     <size>
@@ -432,7 +432,7 @@ background-color:rgb(100,100,100);
                  </property>
                  <property name="icon">
                   <iconset>
-                   <normaloff>../../../.designer/img/Calendar.png</normaloff>../../../.designer/img/Calendar.png</iconset>
+                   <normaloff>../img/Calendar.png</normaloff>../img/Calendar.png</iconset>
                  </property>
                  <property name="iconSize">
                   <size>
@@ -1318,11 +1318,12 @@ background-color:rgb(100,100,100);
    <addaction name="separator"/>
    <addaction name="actionRestaurar_Copias_Seguridad"/>
    <addaction name="separator"/>
+   <addaction name="actionExportar_Datos_xls"/>
   </widget>
   <action name="actionSalir">
    <property name="icon">
     <iconset>
-     <normaloff>../../../.designer/img/exit_icon-icons.com_70975.ico</normaloff>../../../.designer/img/exit_icon-icons.com_70975.ico</iconset>
+     <normaloff>../img/exit_icon-icons.com_70975.ico</normaloff>../img/exit_icon-icons.com_70975.ico</iconset>
    </property>
    <property name="text">
     <string>Salir</string>
@@ -1331,7 +1332,7 @@ background-color:rgb(100,100,100);
   <action name="actionAcerca_de">
    <property name="icon">
     <iconset>
-     <normaloff>../../../.designer/img/sign-question-icon_34359.ico</normaloff>../../../.designer/img/sign-question-icon_34359.ico</iconset>
+     <normaloff>../img/sign-question-icon_34359.ico</normaloff>../img/sign-question-icon_34359.ico</iconset>
    </property>
    <property name="text">
     <string>Acerca de ...</string>
@@ -1340,7 +1341,7 @@ background-color:rgb(100,100,100);
   <action name="barSalir">
    <property name="icon">
     <iconset>
-     <normaloff>../../../.designer/img/exit_icon-icons.com_70975.ico</normaloff>../../../.designer/img/exit_icon-icons.com_70975.ico</iconset>
+     <normaloff>../img/exit_icon-icons.com_70975.ico</normaloff>../img/exit_icon-icons.com_70975.ico</iconset>
    </property>
    <property name="text">
     <string>Salir</string>
@@ -1349,7 +1350,7 @@ background-color:rgb(100,100,100);
   <action name="barLimpiarPanel">
    <property name="icon">
     <iconset>
-     <normaloff>../../../.designer/img/reload_icon-icons.com_64795.ico</normaloff>../../../.designer/img/reload_icon-icons.com_64795.ico</iconset>
+     <normaloff>../img/reload_icon-icons.com_64795.ico</normaloff>../img/reload_icon-icons.com_64795.ico</iconset>
    </property>
    <property name="text">
     <string>LimpiarPanel</string>
@@ -1358,7 +1359,7 @@ background-color:rgb(100,100,100);
   <action name="actionCrear_Copias_Seguridad">
    <property name="icon">
     <iconset>
-     <normaloff>../../../.designer/img/web_ui_database_icon_233606.ico</normaloff>../../../.designer/img/web_ui_database_icon_233606.ico</iconset>
+     <normaloff>../img/web_ui_database_icon_233606.ico</normaloff>../img/web_ui_database_icon_233606.ico</iconset>
    </property>
    <property name="text">
     <string>Crear Copias Seguridad</string>
@@ -1373,7 +1374,7 @@ background-color:rgb(100,100,100);
   <action name="actionRestaurar_Copias_Seguridad">
    <property name="icon">
     <iconset>
-     <normaloff>../../../.designer/img/web_ui_database_icon_233572.ico</normaloff>../../../.designer/img/web_ui_database_icon_233572.ico</iconset>
+     <normaloff>../img/web_ui_database_icon_233572.ico</normaloff>../img/web_ui_database_icon_233572.ico</iconset>
    </property>
    <property name="text">
     <string>Restaurar Copias Seguridad</string>

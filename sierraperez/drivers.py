@@ -200,6 +200,7 @@ class Drivers():
 
     def cargadriver(self):
         try:
+
             Drivers.LimpiarPanel(self)
             row = var.ui.tabDrivers.selectedItems()
             fila = [dato.text() for dato in row]
@@ -220,6 +221,16 @@ class Drivers():
                 else:
                     i.setText(registro[j])
                     j = j + 1
+
+            if 'A' in registro[10]:
+                    var.ui.chkA.setChecked(True)
+            if 'B' in registro[10]:
+                    var.ui.chkB.setChecked(True)
+            if 'C' in registro[10]:
+                    var.ui.chkC.setChecked(True)
+            if 'D' in registro[10]:
+                    var.ui.chkD.setChecked(True)
+            print(registro)
         except Exception as error:
             print('error al cargar datos de 1 cliente ', error)
 

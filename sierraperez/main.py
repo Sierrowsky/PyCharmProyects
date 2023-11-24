@@ -6,7 +6,6 @@ import var
 from MainWindow import *
 from windowAux import *
 import locale
-
 locale.setlocale(locale.LC_TIME, 'es_ES.UTF-8')
 locale.setlocale(locale.LC_MONETARY, 'es_ES.UTF-8')
 
@@ -75,6 +74,7 @@ class Main(QtWidgets.QMainWindow):
 
 
 
+
     def closeEvent(self, event):
         mbox = QtWidgets.QMessageBox.information(self, " Salir ", "¿Estas seguro que quieres salir?",
                                                  QtWidgets.QMessageBox.StandardButton.Yes | QtWidgets.QMessageBox.StandardButton.No)
@@ -90,4 +90,3 @@ if __name__ == '__main__':
     window = Main()
     window.show()
     sys.exit(app.exec())
-

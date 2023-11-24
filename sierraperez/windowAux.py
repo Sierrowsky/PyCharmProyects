@@ -32,6 +32,7 @@ class About(QtWidgets.QDialog):
         super(About, self).__init__()
         var.about = Ui_dlgAbout()
         var.about.setupUi(self)
+        var.about.lblVersion.setText(var.version)
         var.about.btnCerrraAbout.clicked.connect(eventos.Eventos.btnCerrarAbout)
 
 

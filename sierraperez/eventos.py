@@ -75,6 +75,51 @@ class Eventos():
             print("Error en cargarstatusbar ", error)
 
     @staticmethod
+    def valSalario(self=None):
+        try:
+            salario = var.ui.txtSalario.text()
+            valores = "1234567890., €"
+            for n in salario:
+                if n in valores:
+                    pass
+                else:
+                    msg = QtWidgets.QMessageBox()
+                    msg.setWindowTitle('Aviso')
+                    msg.setIcon(QtWidgets.QMessageBox.Icon.Warning)
+                    msg.setText('Valor de Salario Incorrecto (00000000.00)')
+                    msg.setStandardButtons(QtWidgets.QMessageBox.StandardButton.Ok)
+                    msg.button(QtWidgets.QMessageBox.StandardButton.Ok).setText('Aceptar')
+                    msg.setDefaultButton(QtWidgets.QMessageBox.StandardButton.Ok)
+                    msg.exec()
+                    var.ui.txtSalario.setText("")
+                    break
+            var.ui.txtSalario.setText(str(locale.currency(round(float(var.ui.txtSalario.text()), 2), grouping=True)))
+        except Exception as error:
+            print('error en valSalario', error)
+
+    @staticmethod
+    def valTelefono(self=None):
+        try:
+            telefono = var.ui.txtTlf.text()
+            numeros = '1234567890'
+            for n in telefono:
+                if n in numeros and len(telefono) == 9:
+                    pass
+                else:
+                    msg = QtWidgets.QMessageBox()
+                    msg.setWindowTitle('Aviso')
+                    msg.setIcon(QtWidgets.QMessageBox.Icon.Warning)
+                    msg.setText('Escriba un número de móvil correcto')
+                    msg.setStandardButtons(QtWidgets.QMessageBox.StandardButton.Ok)
+                    msg.button(QtWidgets.QMessageBox.StandardButton.Ok).setText('Aceptar')
+                    msg.setDefaultButton(QtWidgets.QMessageBox.StandardButton.Ok)
+                    msg.exec()
+                    var.ui.txtTlf.setText("")
+                    break
+
+        except Exception as error:
+            print("Error en ValTelefono", error)
+    @staticmethod
     def cargapropia(self):
         try:
             prov = ['A Coruña', 'Lugo', 'Ferrol', 'Vigo', 'Santiago de Compostela', 'Ourense', 'Pontevedra']
@@ -143,7 +188,7 @@ class Eventos():
                 with zipfile.ZipFile(str(file), 'r') as bbdd:
                     bbdd.extractall(pwd=None)
                 bbdd.close()
-                conexion.Conexion.mostrardrivers()
+                conexion.Conexion.mostrardriver()
                 mbox = QtWidgets.QMessageBox()
                 mbox.setWindowTitle('Aviso')
                 mbox.setIcon(QtWidgets.QMessageBox.Icon.Information)
@@ -151,7 +196,7 @@ class Eventos():
                 mbox.exec()
             else:
                 var.dlgAbrir.hide()
-            conexion.Conexion.mostrardrivers()
+            conexion.Conexion.mostrardriver()
 
         except Exception as error:
             print('Error restaurar copias seguridad', error)
@@ -202,3 +247,45 @@ class Eventos():
             mbox.setIcon(QtWidgets.QMessageBox.Icon.Warning)
             mbox.setText('Error al exportar datros', error)
             mbox.exec()
+
+    def importardatosxls(self):
+        try:
+            filename = var.dlgAbrir.getOpenFileName(None, 'Importar datos', '',
+                                                    '*.xls;;All Files(*)')
+            if var.dlgAbrir.accept and filename != '':
+                file = filename[0]
+                documento = xlrd.open_workbook(file)
+                datos = documento.sheet_by_index(0)
+                filas = datos.nrows
+                columnas = datos.ncols
+                for i in range(filas):
+                    if i == 0:
+                        pass
+                    else:
+                        new = []
+                        for j in range(columnas):
+                            if j == 1:
+                                dato = xlrd.xldate_as_datetime(datos.cell_value(i, j), documento.datemode)
+                                print(dato)
+                                dato = dato.strftime('%d/%m/%Y')
+                                print(dato)
+                                new.append(str(dato))
+                            else:
+                                new.append(str(datos.cell_value(i, j)))
+                        conexion.Conexion.guardardri(new)
+                    if i == filas - 1:
+                        msg = QtWidgets.QMessageBox()
+                        msg.setModal(True)
+                        msg.setWindowTitle('Aviso')
+                        msg.setIcon(QtWidgets.QMessageBox.Icon.Information)
+                        msg.setText('Importación de Datos Realizada')
+                        msg.exec()
+                conexion.Conexion.SelectDrivers(0)
+
+        except Exception as error:
+            msg = QtWidgets.QMessageBox()
+            msg.setModal(True)
+            msg.setWindowTitle('Aviso')
+            msg.setIcon(QtWidgets.QMessageBox.Icon.Warning)
+            msg.setText(error)
+            msg.exec()

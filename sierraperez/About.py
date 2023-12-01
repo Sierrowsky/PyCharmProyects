@@ -16,7 +16,7 @@ class Ui_dlgAbout(object):
         dlgAbout.setMinimumSize(QtCore.QSize(400, 300))
         dlgAbout.setMaximumSize(QtCore.QSize(400, 300))
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap(".\\templates\\../img/Logo1.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        icon.addPixmap(QtGui.QPixmap(".\\templates\\../../../.designer/img/Logo1.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
         dlgAbout.setWindowIcon(icon)
         self.btnCerrraAbout = QtWidgets.QPushButton(parent=dlgAbout)
         self.btnCerrraAbout.setGeometry(QtCore.QRect(160, 260, 75, 23))

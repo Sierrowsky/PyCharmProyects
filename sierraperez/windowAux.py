@@ -1,5 +1,7 @@
 import sys, eventos, var
+
 import drivers
+import drivers3
 from Calendar import *
 from Salir import *
 from About import *
@@ -15,7 +17,7 @@ class Calendar(QtWidgets.QDialog):
         mes = datetime.now().month
         ano = datetime.now().year
         var.calendar.Calendar.setSelectedDate((QtCore.QDate(ano, mes, dia)))
-        var.calendar.Calendar.clicked.connect(drivers.Drivers.CargaFecha)
+        var.calendar.Calendar.clicked.connect(drivers.Drivers.cargaFecha)
 
 
 class Salir(QtWidgets.QDialog):

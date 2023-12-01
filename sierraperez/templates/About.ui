@@ -27,7 +27,7 @@
   </property>
   <property name="windowIcon">
    <iconset>
-    <normaloff>../img/Logo1.png</normaloff>../img/Logo1.png</iconset>
+    <normaloff>../../../.designer/img/Logo1.png</normaloff>../../../.designer/img/Logo1.png</iconset>
   </property>
   <widget class="QPushButton" name="btnCerrraAbout">
    <property name="geometry">

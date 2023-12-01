@@ -1,6 +1,7 @@
 import datetime
 import conexion
 import drivers
+import drivers3
 import eventos
 import var
 from MainWindow import *
@@ -23,13 +24,13 @@ class Main(QtWidgets.QMainWindow):
         var.dlgAbrir = FileDialogAbrir()
         conexion.Conexion.conexion()
         conexion.Conexion.cargaprov()
-        conexion.Conexion.mostrardrivers(self)
+        conexion.Conexion.mostrardriver()
         """
         Zona de eventos de botones
         """
         var.ui.btnCalendar.clicked.connect(eventos.Eventos.abrirCalendar)
         var.ui.btnAltaDriver.clicked.connect(drivers.Drivers.altadriver)
-        var.ui.btnBuscarDni.clicked.connect(drivers.Drivers.bucarDni)
+        var.ui.btnBuscarDni.clicked.connect(drivers.Drivers.buscarDri)
         var.ui.btnModifDriver.clicked.connect(drivers.Drivers.modifDri)
         var.ui.btnBajaDriver.clicked.connect(drivers.Drivers.borrarDri)
 
@@ -41,21 +42,22 @@ class Main(QtWidgets.QMainWindow):
         var.ui.actionCrear_Copias_Seguridad.triggered.connect(eventos.Eventos.crearCopiaSeguridad)
         var.ui.actionRestaurar_Copias_Seguridad.triggered.connect(eventos.Eventos.restaurarCopiaSeguridad)
         var.ui.actionExportar_Datos_xls.triggered.connect(eventos.Eventos.exportardatosxls)
+        var.ui.actionImportar_Datos_xls.triggered.connect(eventos.Eventos.importardatosxls)
 
         """
         Zona de eventos de las cajas de texto
         """
-        var.ui.txtDni.editingFinished.connect(drivers.Drivers.ValidarDni)
+        var.ui.txtDni.editingFinished.connect(drivers.Drivers.validarDNI)
         var.ui.txtNombre.editingFinished.connect(eventos.Eventos.CajaText)
         var.ui.txtApel.editingFinished.connect(eventos.Eventos.CajaText)
         var.ui.txtSalario.editingFinished.connect(eventos.Eventos.CajaText)
-        var.ui.txtTlf.editingFinished.connect(drivers.Drivers.valTelefono)
-        var.ui.txtSalario.editingFinished.connect(drivers.Drivers.valSalario)
+        var.ui.txtTlf.editingFinished.connect(eventos.Eventos.valTelefono)
+        var.ui.txtSalario.editingFinished.connect(eventos.Eventos.valSalario)
         """
         Eventos del ToolBar
         """
         var.ui.barSalir.triggered.connect(eventos.Eventos.Salir)
-        var.ui.barLimpiarPanel.triggered.connect(drivers.Drivers.LimpiarPanel)
+        var.ui.barLimpiarPanel.triggered.connect(drivers.Drivers.limpiapanel)
         """
         Eventos en tablas
         """

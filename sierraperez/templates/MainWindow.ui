@@ -33,7 +33,7 @@
   </property>
   <property name="windowIcon">
    <iconset>
-    <normaloff>../../../../.designer/img/Logo1.png</normaloff>../../../../.designer/img/Logo1.png</iconset>
+    <normaloff>../../../../../.designer/img/Logo1.png</normaloff>../../../../../.designer/img/Logo1.png</iconset>
   </property>
   <property name="layoutDirection">
    <enum>Qt::LeftToRight</enum>
@@ -1319,6 +1319,7 @@ background-color:rgb(100,100,100);
    <addaction name="actionRestaurar_Copias_Seguridad"/>
    <addaction name="separator"/>
    <addaction name="actionExportar_Datos_xls"/>
+   <addaction name="actionImportar_Datos_xls"/>
   </widget>
   <action name="actionSalir">
    <property name="icon">
@@ -1386,6 +1387,11 @@ background-color:rgb(100,100,100);
   <action name="actionExportar_Datos_xls">
    <property name="text">
     <string>Exportar Datos .xls</string>
+   </property>
+  </action>
+  <action name="actionImportar_Datos_xls">
+   <property name="text">
+    <string>Importar Datos .xls</string>
    </property>
   </action>
  </widget>

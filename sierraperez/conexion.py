@@ -3,6 +3,7 @@ from datetime import datetime
 from PyQt6 import QtWidgets, QtSql, QtCore
 
 import drivers
+import drivers3
 import var
 
 
@@ -88,8 +89,7 @@ class Conexion():
         except Exception as error:
             print("Error guardardri ", error)
 
-    @staticmethod
-    def mostrardrivers(self=None):
+    def mostrardriver(self=None):
         try:
             registros = []
             query1 = QtSql.QSqlQuery()
@@ -198,7 +198,7 @@ class Conexion():
                 mbox.setIcon(QtWidgets.QMessageBox.Icon.Information)
                 mbox.setText("Datos conductor modificados")
                 mbox.exec()
-                Conexion.mostrardrivers()
+                Conexion.mostrardriver()
             else:
                 mbox = QtWidgets.QMessageBox()
                 mbox.setWindowTitle('Aviso')
@@ -235,6 +235,7 @@ class Conexion():
                 mbox.exec()
         except Exception as error:
             print('Error al borrar Driver', error)
+
     @staticmethod
     def selEstado(self):
         try:
@@ -249,6 +250,7 @@ class Conexion():
                 Conexion.SelectDrivers(estado)
         except Exception as error:
             print("Error en selEstado", error)
+
     @staticmethod
     def consulta_drivers(fechaBaja):
         try:

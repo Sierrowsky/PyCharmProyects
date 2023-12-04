@@ -5,7 +5,7 @@ from datetime import datetime
 
 import xlrd
 import xlwt
-
+import drivers
 from conexion import *
 import conexion
 import var
@@ -119,6 +119,7 @@ class Eventos():
 
         except Exception as error:
             print("Error en ValTelefono", error)
+
     @staticmethod
     def cargapropia(self):
         try:
@@ -211,8 +212,8 @@ class Eventos():
             fecha = datetime.today()
             fecha = fecha.strftime('%Y_%m_%d_%H_%M_%S')
             file = (str(fecha) + '_Datos.xls')
-            directorio, filename = var.dlgAbrir.getSaveFileName(None, 'Exportar Datos en Fichero XLS', file, '.xls')
-            if var.dlgAbrir.accept and filename != '':
+            directorio, filename = var.dlgAbrir.getSaveFileName(None, 'Exportar Datos en XLS', file, '.xls')
+            if filename:
                 wb = xlwt.Workbook()
                 sheet1 = wb.add_sheet('Conductores')
                 sheet1.write(0, 0, 'ID')
@@ -223,69 +224,62 @@ class Eventos():
                 sheet1.write(0, 5, 'Dirección')
                 sheet1.write(0, 6, 'Provincia')
                 sheet1.write(0, 7, 'Municipio')
-                sheet1.write(0, 8, 'Telefono')
+                sheet1.write(0, 8, 'Móvil')
                 sheet1.write(0, 9, 'Salario')
-                sheet1.write(0, 10, 'TipoCarnet')
-                sheet1.write(0, 11, 'Fechabaja')
-                registros = conexion.Conexion.selectDriverstodos(self)
-                for j, registros in enumerate(registros):
-                    for i, valor in enumerate(registros):
-                        sheet1.write(j + 1, i, str(valor))
+                sheet1.write(0, 10, 'Carnet')
+                sheet1.write(0, 11, 'Fecha Baja')
+                registros = conexion.Conexion.SelectDriverstodos(self)
+                for fila, registro in enumerate(registros, 1):
+                    for i, valor in enumerate(registro):
+                        sheet1.write(fila, i, str(valor))
                 wb.save(directorio)
-                mbox = QtWidgets.QMessageBox()
-                mbox.setModal(True)
-                mbox.setWindowTitle('Aviso')
-                mbox.setIcon(QtWidgets.QMessageBox.Icon.Information)
-                mbox.setText('Copia de seguridad creada')
-                mbox.exec()
-
-
-
+                msg = QtWidgets.QMessageBox()
+                msg.setModal(True)
+                msg.setWindowTitle('Aviso')
+                msg.setIcon(QtWidgets.QMessageBox.Icon.Information)
+                msg.setText('Exportación de Datos Realizada')
+                msg.exec()
         except Exception as error:
-            mbox = QtWidgets.QMessageBox()
-            mbox.setWindowTitle('Aviso')
-            mbox.setIcon(QtWidgets.QMessageBox.Icon.Warning)
-            mbox.setText('Error al exportar datros', error)
-            mbox.exec()
+            msg = QtWidgets.QMessageBox()
+            msg.setWindowTitle('Aviso')
+            msg.setIcon(QtWidgets.QMessageBox.Icon.Warning)
+            msg.setText('Error Exportar Datos en Hoja de Cálculo', error)
+            msg.exec()
 
-    def importardatosxls(self):
+    @staticmethod
+    def importardatosxls():
         try:
-            filename = var.dlgAbrir.getOpenFileName(None, 'Importar datos', '',
-                                                    '*.xls;;All Files(*)')
-            if var.dlgAbrir.accept and filename != '':
-                file = filename[0]
-                documento = xlrd.open_workbook(file)
+            filename, _ = var.dlgAbrir.getOpenFileName(None, "Importar Datos ", "", "*.xls;;All Files(*)")
+
+            if var.dlgAbrir.accept and filename != "":
+
+                documento = xlrd.open_workbook(filename)
                 datos = documento.sheet_by_index(0)
                 filas = datos.nrows
                 columnas = datos.ncols
+
                 for i in range(filas):
-                    if i == 0:
-                        pass
-                    else:
+                    if i != 0:  # no coge la fila de los títulos
                         new = []
                         for j in range(columnas):
-                            if j == 1:
-                                dato = xlrd.xldate_as_datetime(datos.cell_value(i, j), documento.datemode)
-                                print(dato)
-                                dato = dato.strftime('%d/%m/%Y')
-                                print(dato)
-                                new.append(str(dato))
-                            else:
-                                new.append(str(datos.cell_value(i, j)))
-                        conexion.Conexion.guardardri(new)
-                    if i == filas - 1:
-                        msg = QtWidgets.QMessageBox()
-                        msg.setModal(True)
-                        msg.setWindowTitle('Aviso')
-                        msg.setIcon(QtWidgets.QMessageBox.Icon.Information)
-                        msg.setText('Importación de Datos Realizada')
-                        msg.exec()
-                conexion.Conexion.SelectDrivers(0)
+                            new.append(str(datos.cell_value(i, j)))
+                        conexion.Conexion.guardarImp(new)
 
+                msg = QtWidgets.QMessageBox()
+                msg.setWindowTitle('Aviso')
+                msg.setIcon(QtWidgets.QMessageBox.Icon.Information)
+                msg.setText('Datos importados')
+                msg.setStandardButtons(QtWidgets.QMessageBox.StandardButton.Ok)
+                msg.button(QtWidgets.QMessageBox.StandardButton.Ok).setText('Aceptar')
+                msg.exec()
+                var.ui.txtDni.clear()
+                var.ui.lblValidarDni.clear()
+                conexion.Conexion.mostrardriver()
         except Exception as error:
             msg = QtWidgets.QMessageBox()
-            msg.setModal(True)
             msg.setWindowTitle('Aviso')
             msg.setIcon(QtWidgets.QMessageBox.Icon.Warning)
-            msg.setText(error)
-            msg.exec()
+            msg.setWindowIcon(QtGui.QIcon("./img/logo.ico"))
+            msg.setText('Error al importarDatos' + str(error))
+            msg.setStandardButtons(QtWidgets.QMessageBox.StandardButton.Ok)
+            msg.button(QtWidgets.QMessageBox.StandardButton.Ok).setText('Aceptar')

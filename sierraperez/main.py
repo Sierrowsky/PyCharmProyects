@@ -58,6 +58,8 @@ class Main(QtWidgets.QMainWindow):
         """
         var.ui.barSalir.triggered.connect(eventos.Eventos.Salir)
         var.ui.barLimpiarPanel.triggered.connect(drivers.Drivers.limpiapanel)
+
+
         """
         Eventos en tablas
         """

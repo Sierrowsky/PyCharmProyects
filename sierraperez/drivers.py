@@ -17,7 +17,7 @@ class Drivers():
             for i in chklicencia:
                 i.setChecked(False)
             var.ui.cmbProv.setCurrentText('')
-            var.ui.cmbMuni.setCurrentText('')
+            var.ui.cmbMun.setCurrentText('')
             var.ui.lblcoddb.setText('')
         except Exception as error:
             print('error limpia panel driver: ', error)
@@ -31,7 +31,6 @@ class Drivers():
         except Exception as error:
             print("error en cargar fecha: ", error)
 
-    @staticmethod
     def validarDNI(self=None):
         try:
             dni = var.ui.txtDni.text()
@@ -49,6 +48,7 @@ class Drivers():
                 if len(dni) == len([n for n in dni if n in numeros]) and tabla[int(dni) % 23] == dig_control:
                     var.ui.lblValidarDni.setStyleSheet('color:green;')  # si es válido se pone una V en color verde
                     var.ui.lblValidarDni.setText('V')
+                    return True
                 else:
                     var.ui.lblValidarDni.setStyleSheet('color:red;')  # y si no un aspa en color rojo
                     var.ui.lblValidarDni.setText('X')
@@ -84,7 +84,7 @@ class Drivers():
                 newdriver.append(i.text().title())
             prov = var.ui.cmbProv.currentText()
             newdriver.insert(5, prov)
-            muni = var.ui.cmbMuni.currentText()
+            muni = var.ui.cmbMun.currentText()
             newdriver.insert(6, muni)
 
             licencias = []
@@ -95,6 +95,7 @@ class Drivers():
             newdriver.append('-'.join(licencias))
             print(newdriver)
             conexion.Conexion.guardardri(newdriver)
+
         except Exception as error:
             print("error alta cliente", error)
 
@@ -176,7 +177,7 @@ class Drivers():
                 modifdriver.append(i.text().title())
             prov = var.ui.cmbProv.currentText()
             modifdriver.insert(6, prov)
-            muni = var.ui.cmbMuni.currentText()
+            muni = var.ui.cmbMun.currentText()
             modifdriver.insert(7, muni)
             licencias = []
             chklicencia = [var.ui.chkA, var.ui.chkB, var.ui.chkC, var.ui.chkD]

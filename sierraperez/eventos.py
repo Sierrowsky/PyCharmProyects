@@ -142,7 +142,17 @@ class Eventos():
                     header.setSectionResizeMode(i, QtWidgets.QHeaderView.ResizeMode.Stretch)
         except Exception as error:
             print("Error resizetabdrivers ", error)
-
+    @staticmethod
+    def resizetabdriverscli(self):
+        try:
+            header = var.ui.tabClientes.horizontalHeader()
+            for i in range(4):
+                if i == 0 or i == 2 or i == 3:
+                    header.setSectionResizeMode(i, QtWidgets.QHeaderView.ResizeMode.ResizeToContents)
+                elif i == 1 :
+                    header.setSectionResizeMode(i, QtWidgets.QHeaderView.ResizeMode.Stretch)
+        except Exception as error:
+            print("Error resizetabdrivers ", error)
     @staticmethod
     def CajaText(self=None):
         try:
@@ -275,6 +285,43 @@ class Eventos():
                 var.ui.txtDni.clear()
                 var.ui.lblValidarDni.clear()
                 conexion.Conexion.mostrardriver()
+        except Exception as error:
+            msg = QtWidgets.QMessageBox()
+            msg.setWindowTitle('Aviso')
+            msg.setIcon(QtWidgets.QMessageBox.Icon.Warning)
+            msg.setWindowIcon(QtGui.QIcon("./img/logo.ico"))
+            msg.setText('Error al importarDatos' + str(error))
+            msg.setStandardButtons(QtWidgets.QMessageBox.StandardButton.Ok)
+            msg.button(QtWidgets.QMessageBox.StandardButton.Ok).setText('Aceptar')
+    @staticmethod
+    def importardatosxlscli():
+        try:
+            filename, _ = var.dlgAbrir.getOpenFileName(None, "Importar Datos ", "", "*.xls;;All Files(*)")
+
+            if var.dlgAbrir.accept and filename != "":
+
+                documento = xlrd.open_workbook(filename)
+                datos = documento.sheet_by_index(0)
+                filas = datos.nrows
+                columnas = datos.ncols
+
+                for i in range(filas):
+                    if i != 0:  # no coge la fila de los títulos
+                        new = []
+                        for j in range(columnas):
+                            new.append(str(datos.cell_value(i, j)))
+                        conexion.Conexion.guardarImpcli(new)
+
+                msg = QtWidgets.QMessageBox()
+                msg.setWindowTitle('Aviso')
+                msg.setIcon(QtWidgets.QMessageBox.Icon.Information)
+                msg.setText('Datos importados')
+                msg.setStandardButtons(QtWidgets.QMessageBox.StandardButton.Ok)
+                msg.button(QtWidgets.QMessageBox.StandardButton.Ok).setText('Aceptar')
+                msg.exec()
+                var.ui.txtDni.clear()
+                var.ui.lblValidarDni.clear()
+                conexion.Conexion.mostrarCliente()
         except Exception as error:
             msg = QtWidgets.QMessageBox()
             msg.setWindowTitle('Aviso')

@@ -1,4 +1,6 @@
 import datetime
+
+import clientes
 import conexion
 import drivers
 import drivers3
@@ -20,21 +22,28 @@ class Main(QtWidgets.QMainWindow):
         var.calendar = Calendar()
         var.salir = Salir()
         var.about = About()
+        var.clientes = clientes.Clientes()
         var.driver = drivers.Drivers()
         var.dlgAbrir = FileDialogAbrir()
         conexion.Conexion.conexion()
         conexion.Conexion.cargaprov()
+        conexion.Conexion.cargaprovCli()
         conexion.Conexion.mostrardriver()
+        conexion.Conexion.mostrarCliente()
         """
-        Zona de eventos de botones
+        Zona de eventos de botones del panel drivers
         """
         var.ui.btnCalendar.clicked.connect(eventos.Eventos.abrirCalendar)
         var.ui.btnAltaDriver.clicked.connect(drivers.Drivers.altadriver)
         var.ui.btnBuscarDni.clicked.connect(drivers.Drivers.buscarDri)
         var.ui.btnModifDriver.clicked.connect(drivers.Drivers.modifDri)
         var.ui.btnBajaDriver.clicked.connect(drivers.Drivers.borrarDri)
-
         """
+        Zona de eventos de botones del panel clientes
+        """
+        var.ui.btnAltaCliente.clicked.connect(clientes.Clientes.altacliente)
+        var.ui.btnBajaCliente.clicked.connect(clientes.Clientes.bajacli)
+        """    
         Zona de eventos del MenuBar
         """
         var.ui.actionSalir.triggered.connect(eventos.Eventos.Salir)
@@ -43,9 +52,10 @@ class Main(QtWidgets.QMainWindow):
         var.ui.actionRestaurar_Copias_Seguridad.triggered.connect(eventos.Eventos.restaurarCopiaSeguridad)
         var.ui.actionExportar_Datos_xls.triggered.connect(eventos.Eventos.exportardatosxls)
         var.ui.actionImportar_Datos_xls.triggered.connect(eventos.Eventos.importardatosxls)
+        var.ui.actionImportar_Datos_Clientes_xls.triggered.connect(eventos.Eventos.importardatosxlscli)
 
         """
-        Zona de eventos de las cajas de texto
+        Zona de eventos de las cajas de texto panel drivers
         """
         var.ui.txtDni.editingFinished.connect(drivers.Drivers.validarDNI)
         var.ui.txtNombre.editingFinished.connect(eventos.Eventos.CajaText)
@@ -54,22 +64,36 @@ class Main(QtWidgets.QMainWindow):
         var.ui.txtTlf.editingFinished.connect(eventos.Eventos.valTelefono)
         var.ui.txtSalario.editingFinished.connect(eventos.Eventos.valSalario)
         """
+        Zona de eventos de las cajas de texto panel clientes
+        """
+        var.ui.txtDniCli.editingFinished.connect(clientes.Clientes.validardnicli)
+        """
         Eventos del ToolBar
         """
         var.ui.barSalir.triggered.connect(eventos.Eventos.Salir)
         var.ui.barLimpiarPanel.triggered.connect(drivers.Drivers.limpiapanel)
+        var.ui.barLimpiarPanel.triggered.connect(clientes.Clientes.limpiarpanelcli)
 
 
         """
-        Eventos en tablas
+        Eventos en tablas drivers
         """
         eventos.Eventos.resizetabdrivers(self)
         var.ui.tabDrivers.clicked.connect(drivers.Drivers.cargadriver)
         """
-        eventos Combobox
+        Eventos en tablas clientes
+        """
+        eventos.Eventos.resizetabdriverscli(self)
+        var.ui.tabClientes.clicked.connect(clientes.Clientes.cargarcliente)
+        """
+        eventos Combobox panel drivers
         """
         var.ui.cmbProv.currentIndexChanged.connect(conexion.Conexion.selMuni)
-        #var.ui.r
+
+        """
+        eventos Combobox panel Clientes
+        """
+        var.ui.cmbProvCli.currentIndexChanged.connect(conexion.Conexion.selMuniCli)
         """
         Ejecucion de diferentes funciones al lanzar la APP
         """

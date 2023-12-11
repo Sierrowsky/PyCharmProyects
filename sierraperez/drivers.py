@@ -1,6 +1,6 @@
 import locale
 import conexion
-import drivers
+
 import var, eventos
 from PyQt6 import QtWidgets, QtCore, QtGui
 class Drivers():

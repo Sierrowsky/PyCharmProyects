@@ -2,6 +2,7 @@ from datetime import datetime
 
 from PyQt6 import QtWidgets, QtSql, QtCore
 
+import clientes
 import drivers
 import drivers3
 import var
@@ -181,8 +182,9 @@ class Conexion():
                 msg.setWindowTitle('Aviso')
                 msg.setIcon(QtWidgets.QMessageBox.Icon.Information)
                 msg.setText('No hay datos que modificar. Desea cambiar la fecha o eliminar fecha de baja?')
-                msg.setStandardButtons(QtWidgets.QMessageBox.StandardButton.Yes | QtWidgets.QMessageBox.StandardButton.No |
-                                          QtWidgets.QMessageBox.StandardButton.Cancel)
+                msg.setStandardButtons(
+                    QtWidgets.QMessageBox.StandardButton.Yes | QtWidgets.QMessageBox.StandardButton.No |
+                    QtWidgets.QMessageBox.StandardButton.Cancel)
                 msg.button(QtWidgets.QMessageBox.StandardButton.Yes).setText("Alta")
                 msg.button(QtWidgets.QMessageBox.StandardButton.No).setText("Modificar")
                 msg.button(QtWidgets.QMessageBox.StandardButton.Cancel).setText('Cancelar')
@@ -394,3 +396,158 @@ class Conexion():
 
         except Exception as error:
             print("Error guardarImp ", error)
+
+    @staticmethod
+    def cargaprovCli(self=None):
+        try:
+            var.ui.cmbProvCli.clear()
+            query = QtSql.QSqlQuery()
+            query.prepare("select provincia from provincias")
+            if query.exec():
+                var.ui.cmbProvCli.addItem(' ')
+                while query.next():
+                    var.ui.cmbProvCli.addItem(query.value(0))
+        except Exception as error:
+            print("Error en cargaProv", error)
+
+    @staticmethod
+    def selMuniCli(self=None):
+        try:
+            id = 0
+            var.ui.cmbMunCli.clear()
+            prov = var.ui.cmbProvCli.currentText()
+            query = QtSql.QSqlQuery()
+            query.prepare("select IdProv from provincias where provincia  = :prov")
+            query.bindValue(':prov', prov)
+            if query.exec():
+                while query.next():
+                    id = query.value(0)
+            queryM = QtSql.QSqlQuery()
+            queryM.prepare("select municipio from municipios where IdProv = :id")
+            queryM.bindValue(':id', int(id))
+            if queryM.exec():
+                var.ui.cmbMunCli.addItem('')
+                while queryM.next():
+                    var.ui.cmbMunCli.addItem(queryM.value(0))
+        except Exception as error:
+            print("Error en cargaMun", error)
+
+    @staticmethod
+    def guardarcliente(newcliente):
+        try:
+            query = QtSql.QSqlQuery()
+            # query.prepare('insert into clientes(dnicli,razonsocialcli,direccioncli,telefonocli,provcli,muncli'
+            # ')VALUES(?,? ,?,?,?,?)')
+            query.prepare(
+                'insert into clientes(dnicli,razonsocialcli,direccioncli,telefonocli,provcli,municli)VALUES(:dni,:razonsocial,'
+                ':direccion,:telefono,:prov,:muni)')
+            query.bindValue(":dni", str(newcliente[0]))
+            query.bindValue(":razonsocial", str(newcliente[1]))
+            query.bindValue(":direccion", str(newcliente[2]))
+            query.bindValue(":telefono", str(newcliente[3]))
+            query.bindValue(":prov", str(newcliente[4]))
+            query.bindValue(":muni", str(newcliente[5]))
+
+            if query.exec():
+                mbox = QtWidgets.QMessageBox()
+                mbox.setWindowTitle('Listo')
+                mbox.setIcon(QtWidgets.QMessageBox.Icon.Information)
+                mbox.setText('Cliente dado de alta')
+                mbox.exec()
+                Conexion.mostrarCliente()
+            else:
+                mbox = QtWidgets.QMessageBox()
+                mbox.setWindowTitle('Aviso')
+                mbox.setIcon(QtWidgets.QMessageBox.Icon.Warning)
+                mbox.setText(query.lastError().text())
+                mbox.exec()
+        except Exception as error:
+            mbox = QtWidgets.QMessageBox()
+            mbox.setWindowTitle('Aviso')
+            mbox.setIcon(QtWidgets.QMessageBox.Icon.Warning)
+            mbox.setText("Error en guardar cliente (conexion.Conexion.guardarCliente) ,", error)
+            mbox.exec()
+
+    def mostrarCliente(self=None):
+        try:
+            registro = []
+            query1 = QtSql.QSqlQuery()
+            query1.prepare('Select codigocli,razonsocialcli,telefonocli,provcli from clientes')
+
+            if query1.exec():
+                while query1.next():
+                    row = [query1.value(i) for i in range(query1.record().count())]
+                    registro.append(row)
+                    clientes.Clientes.cargarTablaCli(registro)
+        except Exception as error:
+            mbox = QtWidgets.QMessageBox()
+            mbox.setWindowTitle('Aviso')
+            mbox.setIcon(QtWidgets.QMessageBox.Icon.Warning)
+            mbox.setText("Error en mostrar cliente(conexion.Conexion.mostrarCliente), ", error)
+            mbox.exec()
+
+    def onecliente(codigo):
+        try:
+            registro = []
+            query = QtSql.QSqlQuery()
+            query.prepare('select * from clientes where codigo = :codigo')
+            query.bindValue(':codigo', int(codigo))
+            if query.exec():
+                while query.next():
+                    for i in range(8):
+                        registro.append(str(query.value(i)))
+            return registro
+        except Exception as error:
+            print('Error en onedriver', error)
+
+    @staticmethod
+    def bajacli(dni):
+        try:
+            query1 = QtSql.QSqlQuery()
+            query1.prepare('Select bajacli from clientes')
+            fecha = datetime.today()
+            fecha = fecha.strftime('%d/%m/%y')
+            query = QtSql.QSqlQuery()
+            query.prepare(' Update clientes set bajacli = :fechabaja where '
+                          'dnicli = :dni')
+            query.bindValue(':fechabaja', str(fecha))
+            query.bindValue(':dni', str(dni))
+
+            if query.exec():
+                mbox = QtWidgets.QMessageBox()
+                mbox.setWindowTitle('Aviso')
+                mbox.setIcon(QtWidgets.QMessageBox.Icon.Information)
+                mbox.setText('Cliente dado de baja')
+                mbox.exec()
+            else:
+                mbox = QtWidgets.QMessageBox()
+                mbox.setWindowTitle('Aviso')
+                mbox.setIcon(QtWidgets.QMessageBox.Icon.Warning)
+                mbox.setText(query.lastError().text() + 'Error de baja al cliente')
+                mbox.exec()
+        except Exception as error:
+            print('Error al dar de baja al cliente', error)
+
+    def guardarImpcli(newcliente):
+        try:
+            query = QtSql.QSqlQuery()
+            query.prepare('insert into(codigocli,dnicli,razonsocialcli,direccioncli,'
+                              'telefonocli,provcli,municli) clientes VALUES(null, :dni,:razonsocial,'
+                              ':direccion,:telefono,:prov,:muni)')
+            query.bindValue(":dni", str(newcliente[1]))
+            query.bindValue(":razonsocial", str(newcliente[2]))
+            query.bindValue(":direccion", str(newcliente[3]))
+            query.bindValue(":telefono", str(newcliente[4]))
+            query.bindValue(":prov", str(newcliente[5]))
+            query.bindValue(":muni", str(newcliente[6]))
+            if query.exec():
+                pass
+            else:
+                mbox = QtWidgets.QMessageBox()
+                mbox.setWindowTitle('Aviso')
+                mbox.setIcon(QtWidgets.QMessageBox.Icon.Warning)
+                mbox.setText(query.lastError().text())
+                mbox.exec()
+
+        except Exception as error:
+            print("Error guardarImpCli ", error)
